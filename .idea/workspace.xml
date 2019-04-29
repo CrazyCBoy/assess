@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="957137c7-8f22-48ef-8ca8-84e50700257a" name="Default Changelist" comment="" />
+    <list default="true" id="957137c7-8f22-48ef-8ca8-84e50700257a" name="Default Changelist" comment="one">
+      <change afterPath="$PROJECT_DIR$/assess-prec/frontend/src/components/Footer.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assess-prec/frontend/src/components/MainHome.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/components/HelloWorld.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/router/index.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,8 +53,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/components/Header.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+            <state relative-caret-position="190">
+              <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -129,40 +138,6 @@
               <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="E:\assess" type="442cc68d:ScopeViewTreeModel$RootNode" />
             </path>
-            <path>
-              <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="E:\assess" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="E:\assess" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="E:\assess" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="E:\assess" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="E:\assess" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="router" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -177,7 +152,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="editor.config.ad.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assess-prec/frontend/src/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -213,16 +188,23 @@
       <updated>1556454712115</updated>
       <workItem from="1556454743068" duration="942000" />
       <workItem from="1556455899695" duration="67000" />
-      <workItem from="1556456021388" duration="5459000" />
+      <workItem from="1556456021388" duration="6250000" />
     </task>
+    <task id="LOCAL-00001" summary="one">
+      <created>1556502781628</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1556502781628</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6468000" />
+    <option name="totallyTimeSpent" value="7259000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="26" width="1552" height="840" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25635877" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -242,7 +224,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.3502825" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.39689267" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -257,6 +239,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="one" />
+    <option name="LAST_COMMIT_MESSAGE" value="one" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package-lock.json">
@@ -324,8 +310,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/components/Header.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+        <state relative-caret-position="190">
+          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
         </state>
       </provider>
     </entry>
