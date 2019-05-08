@@ -1,70 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="957137c7-8f22-48ef-8ca8-84e50700257a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/order/TwentyFour.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/brand.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/companyAddress.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/coupon.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/couponHistory.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/flashProductRelation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/flashSession.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/homeAdvertise.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/homeBrand.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/homeSubject.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/hotProduct.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/memberLevel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/newProduct.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/orderSetting.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/oss.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/prefrenceArea.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/productAttr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/productAttrCate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/productCate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/returnApply.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/returnReason.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/skuStock.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/api/subject.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/components/Breadcrumb/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/components/Breadcrumb/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/components/ScrollBar/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/components/ScrollBar/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/components/SvgIcon/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/components/SvgIcon/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/components/Upload/multiUpload.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/icons/svg/product.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/icons/svg/product.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/permission.js" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/permission.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/utils/support.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/layout/components/AppMain.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/views/layout/components/AppMain.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/login/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/views/login/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/apply/applyDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/apply/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/apply/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/apply/reason.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/order/ThreeTime.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/order/ThreeTime.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/order/components/logisticsDialog.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/order/deliverOrderList.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/order/orderDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/oms/order/setting.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/brand/add.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/brand/components/BrandDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/brand/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/brand/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/brand/update.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/product/components/ProductAttrDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/product/components/ProductDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/product/components/ProductInfoDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/product/components/ProductRelationDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/product/components/ProductSaleDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/productAttr/addProductAttr.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/productAttr/components/ProductAttrDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/productAttr/productAttrList.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/productAttr/updateProductAttr.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/productCate/add.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/productCate/components/ProductCateDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/pms/productCate/update.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/sms/advertise/add.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/sms/advertise/components/HomeAdvertiseDetail.vue" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assess-prec/frontend/src/views/sms/advertise/update.vue" beforeDir="false" />
-    </list>
+    <list default="true" id="957137c7-8f22-48ef-8ca8-84e50700257a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,11 +14,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/router/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+            <state relative-caret-position="426">
+              <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -89,20 +26,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/views/layout/Layout.vue">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/views/home/index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/views/layout/components/AppMain.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+            <state relative-caret-position="1871">
+              <caret line="291" column="7" lean-forward="true" selection-start-line="291" selection-start-column="7" selection-end-line="291" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -243,51 +171,6 @@
               <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
-            <path>
-              <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="assess" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="assess" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="views" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="assess" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="views" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="layout" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="assess" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="views" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="layout" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="assess" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="assess" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="assess-prec" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="frontend" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="views" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="layout" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Sidebar" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -359,7 +242,7 @@
       <workItem from="1557019729884" duration="14162000" />
       <workItem from="1557103595838" duration="8835000" />
       <workItem from="1557231668745" duration="2976000" />
-      <workItem from="1557276575421" duration="3077000" />
+      <workItem from="1557276575421" duration="3324000" />
     </task>
     <task id="LOCAL-00001" summary="one">
       <created>1556502781628</created>
@@ -382,11 +265,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557221978227</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="页面">
+      <created>1557279905939</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1557279905940</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69723000" />
+    <option name="totallyTimeSpent" value="69970000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -399,7 +289,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19083156" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -418,7 +307,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3275488" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.4088937" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.527115" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50053304" side_tool="true" weight="0.4913232" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" />
@@ -701,13 +590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/views/home/index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="313" column="36" lean-forward="true" selection-start-line="313" selection-start-column="36" selection-end-line="313" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/utils/request.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -816,6 +698,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/assess-prec/frontend/build/webpack.prod.conf.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/views/layout/components/AppMain.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -830,20 +719,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assess-prec/frontend/build/webpack.prod.conf.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/router/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="24" column="3" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="24" selection-end-column="3" />
+        <state relative-caret-position="426">
+          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assess-prec/frontend/src/views/home/index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1871">
+          <caret line="291" column="7" lean-forward="true" selection-start-line="291" selection-start-column="7" selection-end-line="291" selection-end-column="7" />
         </state>
       </provider>
     </entry>
