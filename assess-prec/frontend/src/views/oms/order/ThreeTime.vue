@@ -61,11 +61,31 @@
     </el-card>
     <el-card class="operate-container" shadow="never">
       <i class="el-icon-tickets"></i>
-      <span>数据列表</span>
+      <span>图表展示</span>
+      <div class="statistics-layout">
+        <el-row>
+          <el-col :span="4">
+            <div style="padding: 20px">
+              <h1>图表</h1>
+            </div>
+          </el-col>
+          <el-col :span="20">
+            <div style="padding: 10px;border-left:1px solid #DCDFE6">
+
+              <div>
+                <ve-line
+                  :data="chartData"
+                  :legend-visible="false"
+                  :loading="loading"
+                  :data-empty="dataEmpty"
+                  :settings="chartSettings"></ve-line>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+
     </el-card>
-    <div class="table-container">
-     <a>s3</a>
-    </div>
 
     <div class="pagination-container">
       <el-pagination
@@ -84,9 +104,9 @@
   </div>
 </template>
 <script>
-  import {fetchList,closeOrder,deleteOrder} from '@/api/order'
   import {formatDate} from '@/utils/date';
-  import LogisticsDialog from '@/views/oms/order/components/logisticsDialog';
+  import {str2Date} from '@/utils/date';
+
   const defaultListQuery = {
     pageNum: 1,
     pageSize: 10,
@@ -97,11 +117,57 @@
     sourceType: null,
     createTime: null,
   };
+  const DATA_FROM_BACKEND = {
+    columns: ['date', 'orderCount','orderAmount'],
+    rows: [
+      {date: '2018-11-01', orderCount: 10, orderAmount: 1093},
+      {date: '2018-11-02', orderCount: 20, orderAmount: 9999},
+      {date: '2018-11-03', orderCount: 33, orderAmount: 0},
+      {date: '2018-11-04', orderCount: 50, orderAmount: 6423},
+    ]
+  };
   export default {
     name: "orderThree",
-    components:{LogisticsDialog},
+
     data() {
       return {
+        pickerOptions: {
+          shortcuts: [{
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date();
+              let start = new Date();
+              start.setFullYear(2018);
+              start.setMonth(10);
+              start.setDate(1);
+              end.setTime(start.getTime() + 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近一月',
+            onClick(picker) {
+              const end = new Date();
+              let start = new Date();
+              start.setFullYear(2018);
+              start.setMonth(10);
+              start.setDate(1);
+              end.setTime(start.getTime() + 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
+        orderCountDate: '',
+        chartSettings: {
+          xAxisType: 'time',
+          area:true,
+          axisSite: { right: ['orderAmount']},
+          labelMap: {'orderCount': '订单数量', 'orderAmount': '订单金额'}},
+        chartData: {
+          columns: [],
+          rows: []
+        },
+        loading: false,
+        dataEmpty: false,
         listQuery: Object.assign({}, defaultListQuery),
         listLoading: true,
         list: null,
@@ -202,7 +268,8 @@
       }
     },
     created() {
-      //this.getList();
+      this.getData();
+      this.initOrderCountDate();
     },
     filters: {
       formatCreateTime(time) {
@@ -242,6 +309,37 @@
       },
     },
     methods: {
+      handleDateChange(){
+        this.getData();
+      },
+      getData(){
+        setTimeout(() => {
+          this.chartData = {
+            columns: ['date', 'orderCount','orderAmount'],
+            rows: []
+          };
+          for(let i=0;i<DATA_FROM_BACKEND.rows.length;i++){
+            let item=DATA_FROM_BACKEND.rows[i];
+            let currDate=str2Date(item.date);
+            let start=this.orderCountDate[0];
+            let end=this.orderCountDate[1];
+            if(currDate.getTime()>=start.getTime()&&currDate.getTime()<=end.getTime()){
+              this.chartData.rows.push(item);
+            }
+          }
+          this.dataEmpty = false;
+          this.loading = false
+        }, 1000)
+      },
+      initOrderCountDate(){
+        let start = new Date();
+        start.setFullYear(2018);
+        start.setMonth(10);
+        start.setDate(1);
+        const end = new Date();
+        end.setTime(start.getTime() + 1000 * 60 * 60 * 24 * 7);
+        this.orderCountDate=[start,end];
+      },
       handleResetSearch() {
         this.listQuery = Object.assign({}, defaultListQuery);
       },
@@ -249,8 +347,6 @@
         this.listQuery.pageNum = 1;
         this.getList();
       },
-
-
       handleSizeChange(val){
         this.listQuery.pageNum = 1;
         this.listQuery.pageSize = val;
@@ -260,6 +356,7 @@
         this.listQuery.pageNum = val;
         this.getList();
       },
+
 
     }
   }
