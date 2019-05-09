@@ -94,46 +94,10 @@
         :total="total">
       </el-pagination>
     </div>
-    <el-dialog
-      title="添加活动"
-      :visible.sync="dialogVisible"
-      width="40%">
-      <el-form :model="flashPromotion"
-               ref="flashPromotionForm"
-               label-width="150px" size="small">
-        <el-form-item label="活动标题：">
-          <el-input v-model="flashPromotion.title" style="width: 250px"></el-input>
-        </el-form-item>
-        <el-form-item label="开始时间：">
-          <el-date-picker
-            v-model="flashPromotion.startDate"
-            type="date"
-            placeholder="请选择时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="结束时间：">
-          <el-date-picker
-            v-model="flashPromotion.endDate"
-            type="date"
-            placeholder="请选择时间">
-          </el-date-picker>
-        </el-form-item>
-        <el-form-item label="上线/下线">
-          <el-radio-group v-model="flashPromotion.status">
-            <el-radio :label="1">上线</el-radio>
-            <el-radio :label="0">下线</el-radio>
-          </el-radio-group>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false" size="small">取 消</el-button>
-        <el-button type="primary" @click="handleDialogConfirm()" size="small">确 定</el-button>
-      </span>
-    </el-dialog>
+
   </div>
 </template>
 <script>
-  import {fetchList, updateStatus, deleteFlash, createFlash, updateFlash} from '@/api/flash';
   import {formatDate} from '@/utils/date';
 
   const defaultListQuery = {

@@ -1,6 +1,6 @@
 <template>
-  <div class="app-wrapper" :class="classObj">
-    <sidebar class="sidebar-container"></sidebar>
+  <div class="app-wrapper" >
+
     <div class="main-container">
       <navbar></navbar>
       <app-main></app-main>
@@ -10,30 +10,17 @@
 
 <script>
 import { Navbar, Sidebar, AppMain } from './components'
-import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
   name: 'layout',
   components: {
-    Navbar,
-    Sidebar,
-    AppMain
+    Navbar,//控制右侧页面上方导航组件
+   //Sidebar,//控制左侧页面组件，Sidebar文件夹
+    AppMain,//控制右侧组件内容
+
+
   },
-  mixins: [ResizeMixin],
   computed: {
-    sidebar() {
-      return this.$store.state.app.sidebar
-    },
-    device() {
-      return this.$store.state.app.device
-    },
-    classObj() {
-      return {
-        hideSidebar: !this.sidebar.opened,
-        withoutAnimation: this.sidebar.withoutAnimation,
-        mobile: this.device === 'mobile'
-      }
-    }
   }
 }
 </script>

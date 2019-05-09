@@ -41,54 +41,7 @@
       <el-button size="mini" class="btn-add" @click="handleAdd()">添加</el-button>
     </el-card>
     <div class="table-container">
-      <el-table ref="couponTable"
-                :data="list"
-                style="width: 100%;"
-                @selection-change="handleSelectionChange"
-                v-loading="listLoading" border>
-        <el-table-column type="selection" width="60" align="center"></el-table-column>
-        <el-table-column label="编号" width="100" align="center">
-          <template slot-scope="scope">{{scope.row.id}}</template>
-        </el-table-column>
-        <el-table-column label="优惠劵名称" align="center">
-          <template slot-scope="scope">{{scope.row.name}}</template>
-        </el-table-column>
-        <el-table-column label="优惠券类型" width="100" align="center">
-          <template slot-scope="scope">{{scope.row.type | formatType}}</template>
-        </el-table-column>
-        <el-table-column label="可使用商品" width="100" align="center">
-          <template slot-scope="scope">{{scope.row.useType | formatUseType}}</template>
-        </el-table-column>
-        <el-table-column label="使用门槛" width="140" align="center">
-          <template slot-scope="scope">满{{scope.row.minPoint}}元可用</template>
-        </el-table-column>
-        <el-table-column label="面值" width="100" align="center">
-          <template slot-scope="scope">{{scope.row.amount}}元</template>
-        </el-table-column>
-        <el-table-column label="适用平台" width="100" align="center">
-          <template slot-scope="scope">{{scope.row.platform | formatPlatform}}</template>
-        </el-table-column>
-        <el-table-column label="有效期" width="180" align="center">
-          <template slot-scope="scope">{{scope.row.startTime|formatDate}}至{{scope.row.endTime|formatDate}}</template>
-        </el-table-column>
-        <el-table-column label="状态" width="100" align="center">
-          <template slot-scope="scope">{{scope.row.endTime | formatStatus}}</template>
-        </el-table-column>
-        <el-table-column label="操作" width="180" align="center">
-          <template slot-scope="scope">
-            <el-button size="mini"
-                       type="text"
-                       @click="handleView(scope.$index, scope.row)">查看</el-button>
-            <el-button size="mini"
-                       type="text"
-                       @click="handleUpdate(scope.$index, scope.row)">
-              编辑</el-button>
-            <el-button size="mini"
-                       type="text"
-                       @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
+
     </div>
     <div class="pagination-container">
       <el-pagination
@@ -105,7 +58,6 @@
   </div>
 </template>
 <script>
-  import {fetchList,deleteCoupon} from '@/api/coupon';
   import {formatDate} from '@/utils/date';
   const defaultListQuery = {
     pageNum: 1,
