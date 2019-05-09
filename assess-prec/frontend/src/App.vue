@@ -42,7 +42,7 @@
       }
 
       .el-aside {
-        width: 300px;
+        width: 330px !important;
         float: left;
         position: fixed;
         z-index: 9;

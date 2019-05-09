@@ -4,8 +4,8 @@
       mode="vertical"
       :show-timeout="200"
       :default-active="$route.path"
-      background-color="#304156"
-      text-color="#bfcbd9"
+      background-color="#ffffff"
+      text-color="#304156"
       active-text-color="#409EFF"
     >
       <sidebar-item :routes="routes"></sidebar-item>

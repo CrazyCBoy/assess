@@ -3,17 +3,16 @@
         <el-header>
             <el-row>
                 <el-col :span="12" :xs="5" :sm="8">
-                    <div class="grid-content bg-purple"><span class='u-logo'></span>中央气象台</div>
+                    <div class="grid-content bg-purple" >中央气象台</div>
                 </el-col>
                 <el-col :span="12" :xs="19" :sm="16">
                     <div class="grid-content bg-purple-light">
                         <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal"
-                                 background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+                                 background-color="#304156" text-color="#fff" active-text-color="#ffd04b">
 
                             <el-menu-item index="5" v-if="!isAuthenticated" >
                                 <el-button type="info" @click="entry">登录</el-button>
                             </el-menu-item>
-                            <el-menu-item v-if="isAuthenticated" index="4" @click='myMessage'>我的账号</el-menu-item>
                         </el-menu>
                     </div>
                 </el-col>
@@ -80,9 +79,9 @@
     .el-header {
       width: 100%;
       position: fixed;
-        text-align: center;
+        text-align: right;
         line-height: 60px;
-        background-color: #545c64;
+        background-color: #304156;
         color: #fff;
 
         li {
