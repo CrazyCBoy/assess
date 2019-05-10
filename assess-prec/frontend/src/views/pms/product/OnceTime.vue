@@ -3,25 +3,30 @@
     <el-card class="filter-container" shadow="never">
       <div>
         <i class="el-icon-search"></i>
-        <span>选择数据
-        </span>
-
-        <el-button
-          style="float: right"
-          @click="handleSearchList()"
-          type="primary"
-          size="small">
-          查询结果
-        </el-button>
-        <el-button
-          style="float: right;margin-right: 15px"
-          @click="handleResetSearch()"
-          size="small">
-          重置
-        </el-button>
+        <span>选择数据</span>
+        <el-button style="float:right" type="primary" @click="handleSearchList()" size="small">查询搜索</el-button>
+        <el-button style="float:right;margin-right: 15px" @click="handleResetSearch()" size="small">重置</el-button>
       </div>
       <div style="margin-top: 15px">
         <el-form :inline="true" :model="listQuery" size="small" label-width="140px">
+          <el-form-item label="提交时间：">
+            <el-date-picker
+              class="input-width"
+              v-model="listQuery.createTime"
+              value-format="yyyy-MM-dd"
+              type="date"
+              placeholder="请选择时间">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item label="SCALE：">
+            <el-select v-model="listQuery.status" class="input-width" placeholder="全部" clearable>
+              <el-option v-for="item in statusOptions"
+                         :key="item.value"
+                         :label="item.label"
+                         :value="item.value">
+              </el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item label="选择小时：">
             <el-select v-model="listQuery.orderType" class="input-width" placeholder="全部" clearable>
               <el-option v-for="item in orderTypeOptions"
@@ -31,45 +36,37 @@
               </el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="小时：">
-            <el-select v-model="listQuery.verifyStatus" placeholder="全部" clearable>
-              <el-option
-                v-for="item in verifyStatusOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </el-form-item>
-          <el-form-item label="SCALE：">
-            <el-select v-model="listQuery.publishStatus" placeholder="全部" clearable>
-              <el-option
-                v-for="item in publishStatusOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
-          </el-form-item>
 
         </el-form>
       </div>
     </el-card>
+    <el-card class="operate-container" shadow="never">
+      <i class="el-icon-tickets"></i>
+      <span>图表展示</span>
+      <div class="statistics-layout">
+        <el-row>
+          <el-col :span="4">
+            <div style="padding: 20px">
+              <h1>图表</h1>
+            </div>
+          </el-col>
+          <el-col :span="20">
+            <div style="padding: 10px;border-left:1px solid #DCDFE6">
 
-    <div class="table-container">
-      <el-card class="operate-container" shadow="never">
-        <i class="el-icon-tickets"></i>
-        <span>数据列表</span>
-        <el-button
-          class="btn-add"
-          size="mini">
-          添加
-        </el-button>
-      </el-card>
-    </div>
-    <div class="table-container">
-      <a>s3</a>
-    </div>
+              <div>
+                <ve-line
+                  :data="chartData"
+                  :legend-visible="false"
+                  :loading="loading"
+                  :data-empty="dataEmpty"
+                  :settings="chartSettings"></ve-line>
+              </div>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+
+    </el-card>
 
     <div class="pagination-container">
       <el-pagination
@@ -83,398 +80,185 @@
         :total="total">
       </el-pagination>
     </div>
+
+    <logistics-dialog v-model="logisticsDialogVisible"></logistics-dialog>
   </div>
 </template>
 <script>
-
-
+  import {formatDate} from '@/utils/date';
+  import {str2Date} from '@/utils/date';
 
   const defaultListQuery = {
-    keyword: null,
     pageNum: 1,
-    pageSize: 5,
-    publishStatus: null,
-    verifyStatus: null,
-    productSn: null,
-    productCategoryId: null,
-    brandId: null
+    pageSize: 10,
+    orderSn: null,
+    receiverKeyword: null,
+    status: null,
+    orderType: null,
+    sourceType: null,
+    createTime: null,
+  };
+  const DATA_FROM_BACKEND = {
+    columns: ['date', 'orderCount','orderAmount'],
+    rows: [
+      {date: '2018-11-01', orderCount: 10, orderAmount: 1093},
+      {date: '2018-11-02', orderCount: 20, orderAmount: 9999},
+      {date: '2018-11-03', orderCount: 33, orderAmount: 0},
+      {date: '2018-11-04', orderCount: 50, orderAmount: 6423},
+    ]
   };
   export default {
     name: "productList",
+
     data() {
       return {
-        listQuery: Object.assign({}, defaultListQuery),
-        editSkuInfo:{
-          dialogVisible:false,
-          productId:null,
-          productSn:'',
-          productAttributeCategoryId:null,
-          stockList:[],
-          productAttr:[],
-          keyword:null
+        orderCountDate: '',
+        chartSettings: {
+          xAxisType: 'time',
+          area:true,
+          axisSite: { right: ['orderAmount']},
+          labelMap: {'orderCount': '订单数量', 'orderAmount': '订单金额'}},
+        chartData: {
+          columns: [],
+          rows: []
         },
-        operates: [
-          {
-            label: "商品上架",
-            value: "publishOn"
-          },
-          {
-            label: "商品下架",
-            value: "publishOff"
-          },
-          {
-            label: "设为推荐",
-            value: "recommendOn"
-          },
-          {
-            label: "取消推荐",
-            value: "recommendOff"
-          },
-          {
-            label: "设为新品",
-            value: "newOn"
-          },
-          {
-            label: "取消新品",
-            value: "newOff"
-          },
-          {
-            label: "转移到分类",
-            value: "transferCategory"
-          },
-          {
-            label: "移入回收站",
-            value: "recycle"
-          }
-        ],
-        operateType: null,
+        loading: false,
+        dataEmpty: false,
+        listQuery: Object.assign({}, defaultListQuery),
+        listLoading: true,
         list: null,
         total: null,
-        listLoading: true,
-        selectProductCateValue: null,
+        operateType: null,
         multipleSelection: [],
-        productCateOptions: [],
-        brandOptions: [],
-        publishStatusOptions: [{
-          value: 0,
-          label: 'mean'
-        },{
-          value: 1,
-          label: 'SCALE(3X)'
-        }, {
-          value: 5,
-          label: 'SCALE(5X)'
-        },{
-          value: 3,
-          label: 'SCALE(9X)'
-        },{
-          value: 4,
-          label: 'SCALE(17X)'
-        },{
-          value: 5,
-          label: 'SCALE(33X)'
-        },{
-          value: 6,
-          label: 'SCALE(65X)'
-        }],
-        verifyStatusOptions: [{
-          value: 0,
-          label: '1hour'
-        }, {
-          value: 1,
-          label: '2hour'
-        }, {
-          value: 2,
-          label: '3hour'
-        }, {
-            value: 3,
-            label: '4hour'
-          }, {
-            value: 4,
-            label: '5hour'
+        closeOrder:{
+          dialogVisible:false,
+          content:null,
+          orderIds:[]
+        },
+        statusOptions: [
+          {
+            value: 0,
+            label: 'mean'
+          },{
+            value: 1,
+            label: 'SCALE(3X)'
           }, {
             value: 5,
-            label: '6hour'
-          }]
+            label: 'SCALE(5X)'
+          },{
+            value: 3,
+            label: 'SCALE(9X)'
+          },{
+            value: 4,
+            label: 'SCALE(13X)'
+          },{
+            value: 5,
+            label: 'SCALE(17X)'
+          },{
+            value: 6,
+            label: 'SCALE(33X)'
+          },{
+            value: 7,
+            label: 'SCALE(65X)'
+          }
+        ],
+        orderTypeOptions: [
+          {
+            value: 0,
+            label: '1hrs'
+          }, {
+            value: 1,
+            label: '2hrs'
+          }, {
+            value: 2,
+            label: '3hrs'
+          }, {
+            value: 3,
+            label: '4hrs'
+          }, {
+            value: 4,
+            label: '5hrs'
+          }, {
+            value: 5,
+            label: '6hrs'
+          }, {
+            value: 6,
+            label: '7hrs'
+          }, {
+            value: 7,
+            label: '8hrs'
+          }, {
+            value: 8,
+            label: '9hrs'
+          }, {
+            value: 9,
+            label: '10hrs'
+          }
+        ],
+        logisticsDialogVisible:false
       }
     },
     created() {
- /*     this.getList();
-      this.getBrandList();
-      this.getProductCateList();*/
-    },
-    watch: {
-      selectProductCateValue: function (newValue) {
-        if (newValue != null && newValue.length == 2) {
-          this.listQuery.productCategoryId = newValue[1];
-        } else {
-          this.listQuery.productCategoryId = null;
-        }
-
-      }
-    },
-    filters: {
-      verifyStatusFilter(value) {
-        if (value === 1) {
-          return '审核通过';
-        } else {
-          return '未审核';
-        }
-      }
+      this.getData();
+      this.initOrderCountDate();
     },
     methods: {
-      getProductSkuSp(row, index) {
-        if (OnceTime === 0) {
-          return row.sp1;
-        } else if (OnceTime === 1) {
-          return row.sp2;
-        } else {
-          return row.sp3;
-        }
+      handleDateChange(){
+        this.getData();
       },
-      getList() {
-        this.listLoading = true;
-        fetchList(this.listQuery).then(response => {
-          this.listLoading = false;
-          this.list = response.data.list;
-          this.total = response.data.total;
-        });
-      },
-      getBrandList() {
-        fetchBrandList({pageNum: 1, pageSize: 100}).then(response => {
-          this.brandOptions = [];
-          let brandList = response.data.list;
-          for (let i = 0; i < brandList.length; i++) {
-            this.brandOptions.push({label: brandList[i].name, value: brandList[i].id});
-          }
-        });
-      },
-      getProductCateList() {
-        fetchListWithChildren().then(response => {
-          let list = response.data;
-          this.productCateOptions = [];
-          for (let i = 0; i < list.length; i++) {
-            let children = [];
-            if (list[i].children != null && list[i].children.length > 0) {
-              for (let j = 0; j < list[i].children.length; j++) {
-                children.push({label: list[i].children[j].name, value: list[i].children[j].id});
-              }
+      getData(){
+        setTimeout(() => {
+          this.chartData = {
+            columns: ['date', 'orderCount','orderAmount'],
+            rows: []
+          };
+          for(let i=0;i<DATA_FROM_BACKEND.rows.length;i++){
+            let item=DATA_FROM_BACKEND.rows[i];
+            let currDate=str2Date(item.date);
+            let start=this.orderCountDate[0];
+            let end=this.orderCountDate[1];
+            if(currDate.getTime()>=start.getTime()&&currDate.getTime()<=end.getTime()){
+              this.chartData.rows.push(item);
             }
-            this.productCateOptions.push({label: list[i].name, value: list[i].id, children: children});
           }
-        });
+          this.dataEmpty = false;
+          this.loading = false
+        }, 1000)
       },
-      handleShowSkuEditDialog(index,row){
-        this.editSkuInfo.dialogVisible=true;
-        this.editSkuInfo.productId=row.id;
-        this.editSkuInfo.productSn=row.productSn;
-        this.editSkuInfo.productAttributeCategoryId = row.productAttributeCategoryId;
-        this.editSkuInfo.keyword=null;
-        fetchSkuStockList(row.id,{keyword:this.editSkuInfo.keyword}).then(response=>{
-          this.editSkuInfo.stockList=response.data;
-        });
-        fetchProductAttrList(row.productAttributeCategoryId,{type:0}).then(response=>{
-          this.editSkuInfo.productAttr=response.data.list;
-        });
+      initOrderCountDate(){
+        let start = new Date();
+        start.setFullYear(2018);
+        start.setMonth(10);
+        start.setDate(1);
+        const end = new Date();
+        end.setTime(start.getTime() + 1000 * 60 * 60 * 24 * 7);
+        this.orderCountDate=[start,end];
       },
-      handleSearchEditSku(){
-        fetchSkuStockList(this.editSkuInfo.productId,{keyword:this.editSkuInfo.keyword}).then(response=>{
-          this.editSkuInfo.stockList=response.data;
-        });
-      },
-      handleEditSkuConfirm(){
-        if(this.editSkuInfo.stockList==null||this.editSkuInfo.stockList.length<=0){
-          this.$message({
-            message: '暂无sku信息',
-            type: 'warning',
-            duration: 1000
-          });
-          return
-        }
-        this.$confirm('是否要进行修改', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(()=>{
-          updateSkuStockList(this.editSkuInfo.productId,this.editSkuInfo.stockList).then(response=>{
-            this.$message({
-              message: '修改成功',
-              type: 'success',
-              duration: 1000
-            });
-            this.editSkuInfo.dialogVisible=false;
-          });
-        });
+      handleResetSearch() {
+        this.listQuery = Object.assign({}, defaultListQuery);
       },
       handleSearchList() {
         this.listQuery.pageNum = 1;
         this.getList();
       },
-      handleAddProduct() {
-        this.$router.push({path:'/pms/addProduct'});
-      },
-      handleBatchOperate() {
-        if(this.operateType==null){
-          this.$message({
-            message: '请选择操作类型',
-            type: 'warning',
-            duration: 1000
-          });
-          return;
-        }
-        if(this.multipleSelection==null||this.multipleSelection.length<1){
-          this.$message({
-            message: '请选择要操作的商品',
-            type: 'warning',
-            duration: 1000
-          });
-          return;
-        }
-        this.$confirm('是否要进行该批量操作?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          let ids=[];
-          for(let i=0;i<this.multipleSelection.length;i++){
-            ids.push(this.multipleSelection[i].id);
-          }
-          switch (this.operateType) {
-            case this.operates[0].value:
-              this.updatePublishStatus(1,ids);
-              break;
-            case this.operates[1].value:
-              this.updatePublishStatus(0,ids);
-              break;
-            case this.operates[2].value:
-              this.updateRecommendStatus(1,ids);
-              break;
-            case this.operates[3].value:
-              this.updateRecommendStatus(0,ids);
-              break;
-            case this.operates[4].value:
-              this.updateNewStatus(1,ids);
-              break;
-            case this.operates[5].value:
-              this.updateNewStatus(0,ids);
-              break;
-            case this.operates[6].value:
-              break;
-            case this.operates[7].value:
-              this.updateDeleteStatus(1,ids);
-              break;
-            default:
-              break;
-          }
-          this.getList();
-        });
-      },
-      handleSizeChange(val) {
+      handleSizeChange(val){
         this.listQuery.pageNum = 1;
         this.listQuery.pageSize = val;
         this.getList();
       },
-      handleCurrentChange(val) {
+      handleCurrentChange(val){
         this.listQuery.pageNum = val;
         this.getList();
       },
-      handleSelectionChange(val) {
-        this.multipleSelection = val;
-      },
-      handlePublishStatusChange(index, row) {
-        let ids = [];
-        ids.push(row.id);
-        this.updatePublishStatus(row.publishStatus, ids);
-      },
-      handleNewStatusChange(index, row) {
-        let ids = [];
-        ids.push(row.id);
-        this.updateNewStatus(row.newStatus, ids);
-      },
-      handleRecommendStatusChange(index, row) {
-        let ids = [];
-        ids.push(row.id);
-        this.updateRecommendStatus(row.recommandStatus, ids);
-      },
-      handleResetSearch() {
-        this.selectProductCateValue = [];
-        this.listQuery = Object.assign({}, defaultListQuery);
-      },
-      handleDelete(index, row){
-        this.$confirm('是否要进行删除操作?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          let ids = [];
-          ids.push(row.id);
-          this.updateDeleteStatus(1,ids);
-        });
-      },
-      handleUpdateProduct(index,row){
-        this.$router.push({path:'/pms/updateProduct',query:{id:row.id}});
-      },
-      handleShowProduct(index,row){
-        console.log("handleShowProduct",row);
-      },
-      handleShowVerifyDetail(index,row){
-        console.log("handleShowVerifyDetail",row);
-      },
-      handleShowLog(index,row){
-        console.log("handleShowLog",row);
-      },
-      updatePublishStatus(publishStatus, ids) {
-        let params = new URLSearchParams();
-        params.append('ids', ids);
-        params.append('publishStatus', publishStatus);
-        updatePublishStatus(params).then(response => {
-          this.$message({
-            message: '修改成功',
-            type: 'success',
-            duration: 1000
-          });
-        });
-      },
-      updateNewStatus(newStatus, ids) {
-        let params = new URLSearchParams();
-        params.append('ids', ids);
-        params.append('newStatus', newStatus);
-        updateNewStatus(params).then(response => {
-          this.$message({
-            message: '修改成功',
-            type: 'success',
-            duration: 1000
-          });
-        });
-      },
-      updateRecommendStatus(recommendStatus, ids) {
-        let params = new URLSearchParams();
-        params.append('ids', ids);
-        params.append('recommendStatus', recommendStatus);
-        updateRecommendStatus(params).then(response => {
-          this.$message({
-            message: '修改成功',
-            type: 'success',
-            duration: 1000
-          });
-        });
-      },
-      updateDeleteStatus(deleteStatus, ids) {
-        let params = new URLSearchParams();
-        params.append('ids', ids);
-        params.append('deleteStatus', deleteStatus);
-        updateDeleteStatus(params).then(response => {
-          this.$message({
-            message: '删除成功',
-            type: 'success',
-            duration: 1000
-          });
-        });
-        this.getList();
-      }
+
+
     }
   }
 </script>
-<style></style>
+<style scoped>
+  .input-width {
+    width: 203px;
+  }
+</style>
 
 

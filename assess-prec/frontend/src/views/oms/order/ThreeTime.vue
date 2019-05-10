@@ -4,19 +4,8 @@
       <div>
         <i class="el-icon-search"></i>
         <span>选择数据</span>
-        <el-button
-          style="float:right"
-          type="primary"
-          @click="handleSearchList()"
-          size="small">
-          查询搜索
-        </el-button>
-        <el-button
-          style="float:right;margin-right: 15px"
-          @click="handleResetSearch()"
-          size="small">
-          重置
-        </el-button>
+        <el-button style="float:right" type="primary" @click="handleSearchList()" size="small">查询搜索</el-button>
+        <el-button style="float:right;margin-right: 15px" @click="handleResetSearch()" size="small">重置</el-button>
       </div>
       <div style="margin-top: 15px">
         <el-form :inline="true" :model="listQuery" size="small" label-width="140px">
@@ -131,31 +120,6 @@
 
     data() {
       return {
-        pickerOptions: {
-          shortcuts: [{
-            text: '最近一周',
-            onClick(picker) {
-              const end = new Date();
-              let start = new Date();
-              start.setFullYear(2018);
-              start.setMonth(10);
-              start.setDate(1);
-              end.setTime(start.getTime() + 3600 * 1000 * 24 * 7);
-              picker.$emit('pick', [start, end]);
-            }
-          }, {
-            text: '最近一月',
-            onClick(picker) {
-              const end = new Date();
-              let start = new Date();
-              start.setFullYear(2018);
-              start.setMonth(10);
-              start.setDate(1);
-              end.setTime(start.getTime() + 3600 * 1000 * 24 * 30);
-              picker.$emit('pick', [start, end]);
-            }
-          }]
-        },
         orderCountDate: '',
         chartSettings: {
           xAxisType: 'time',
@@ -220,22 +184,40 @@
         orderTypeOptions: [
           {
             value: 0,
-            label: '1hour'
-          }, {
-            value: 1,
-            label: '2hour'
-          }, {
-            value: 2,
             label: '3hour'
           }, {
+            value: 1,
+            label: '6hour'
+          }, {
+            value: 2,
+            label: '9hour'
+          }, {
             value: 3,
-            label: '4hour'
+            label: '12hour'
           }, {
             value: 4,
-            label: '5hour'
+            label: '15hour'
           }, {
             value: 5,
-            label: '6hour'
+            label: '18hour'
+          }, {
+            value: 6,
+            label: '21hour'
+          }, {
+            value: 7,
+            label: '24hour'
+          }, {
+            value: 8,
+            label: '27hour'
+          }, {
+            value: 9,
+            label: '30hour'
+          }, {
+            value: 10,
+            label: '33hour'
+          }, {
+            value: 11,
+            label: '36hour'
           }
         ],
         operateOptions: [
@@ -248,19 +230,19 @@
             value: 2
           },
           {
-            label: "p1.6",
+            label: "p3",
             value: 3
           }, {
             label: "p5",
             value: 4
           }, {
-            label: "p7",
+            label: "p10",
             value: 5
           },{
-            label: "p15",
+            label: "p20",
             value: 6
           },{
-            label: "p40",
+            label: "p50",
             value: 7
           },
         ],

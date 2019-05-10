@@ -92,20 +92,44 @@ constantRouterMap = [
     component: Layout,
     redirect: '/sms/coupon',
     name: 'sms',
-    meta: {title: '站点降水检验'},
+    meta: {title: '降水技巧评分(Rainfall Skills Score)', icon: 'sms'},
     children: [
       {
-        path: 'flash',
-        name: 'flash',
-        component: () => import('@/views/sms/flash/index'),
-        meta: {title: '降水技巧评分', icon: 'sms-flash'}
+        path: 'couponSix',
+        name: 'couponSix',
+        component: () => import('@/views/sms/coupon/SixTime'),
+        meta: {title: '6hr', icon: 'coupon-six'}
       },
-
       {
-        path: 'coupon',
-        name: 'coupon',
-        component: () => import('@/views/sms/coupon/index'),
-        meta: {title: '近地面要素', icon: 'sms-coupon'}
+        path: 'couponTF',
+        name: 'couponTF',
+        component: () => import('@/views/sms/coupon/TFTime'),
+        meta: {title: '24hr', icon: 'coupon-TF'},
+      }
+    ]
+  },
+  {
+    path: '/sms',
+    component: Layout,
+    redirect: '/sms/flash',
+    name: 'sm',
+    meta: {title: '近地面要素检验(surface verification)', icon: 'sms'},
+    children: [
+      {
+        path: 'flashRMSE',
+        name: 'flashRMSE',
+        component: () => import('@/views/sms/flash/RMSE'),
+        meta: {title: 'RMSE', icon: 'flash-RMSE'}
+      },{
+        path: 'flashRelative',
+        name: 'flashRelative',
+        component: () => import('@/views/sms/flash/relative'),
+        meta: {title: '相对误差',icon: 'flash-relative'},
+      },{
+        path: 'flashAbsolutely',
+        name: 'flashAbsolutely',
+        component: () => import('@/views/sms/flash/absolutely'),
+        meta: {title: '绝对误差',icon: 'flash-absolutely'},
       },
     ]
   },

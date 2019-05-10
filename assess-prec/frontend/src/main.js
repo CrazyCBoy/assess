@@ -12,9 +12,14 @@ import '@/styles/index.scss' // global css
 import App from './App'
 import router from './router'
 import store from './store'
+import echarts from 'echarts'
 
 //import '@/icons' // icon
 //import '@/permission' // permission control
+
+
+
+Vue.prototype.$echarts = echarts
 
 Vue.use(ElementUI, { locale })
 Vue.use(VCharts)

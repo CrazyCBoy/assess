@@ -4,19 +4,8 @@
       <div>
         <i class="el-icon-search"></i>
         <span>选择数据</span>
-        <el-button
-          style="float:right"
-          type="primary"
-          @click="handleSearchList()"
-          size="small">
-          查询搜索
-        </el-button>
-        <el-button
-          style="float:right;margin-right: 15px"
-          @click="handleResetSearch()"
-          size="small">
-          重置
-        </el-button>
+        <el-button style="float:right" type="primary" @click="handleSearchList()" size="small">查询搜索</el-button>
+        <el-button style="float:right;margin-right: 15px" @click="handleResetSearch()" size="small">重置</el-button>
       </div>
       <div style="margin-top: 15px">
         <el-form :inline="true" :model="listQuery" size="small" label-width="140px">
@@ -99,13 +88,23 @@
         :total="total">
       </el-pagination>
     </div>
+
+    <logistics-dialog v-model="logisticsDialogVisible"></logistics-dialog>
   </div>
 </template>
 <script>
+  import {formatDate} from '@/utils/date';
   import {str2Date} from '@/utils/date';
+
   const defaultListQuery = {
     pageNum: 1,
     pageSize: 10,
+    orderSn: null,
+    receiverKeyword: null,
+    status: null,
+    orderType: null,
+    sourceType: null,
+    createTime: null,
   };
   const DATA_FROM_BACKEND = {
     columns: ['date', 'orderCount','orderAmount'],
@@ -185,22 +184,22 @@
         orderTypeOptions: [
           {
             value: 0,
-            label: '1hour'
+            label: '6hour'
           }, {
             value: 1,
-            label: '2hour'
+            label: '12hour'
           }, {
             value: 2,
-            label: '3hour'
+            label: '18hour'
           }, {
             value: 3,
-            label: '4hour'
+            label: '24hour'
           }, {
             value: 4,
-            label: '5hour'
+            label: '30hour'
           }, {
             value: 5,
-            label: '6hour'
+            label: '36hour'
           }
         ],
         operateOptions: [
@@ -213,22 +212,20 @@
             value: 2
           },
           {
-            label: "p1.6",
+            label: "p4",
             value: 3
           }, {
-            label: "p5",
+            label: "p13",
             value: 4
           }, {
-            label: "p7",
+            label: "p25",
             value: 5
           },{
-            label: "p15",
+            label: "p60",
             value: 6
-          },{
-            label: "p40",
-            value: 7
-          },
+          }
         ],
+        logisticsDialogVisible:false
       }
     },
     created() {
@@ -283,7 +280,6 @@
         this.listQuery.pageNum = val;
         this.getList();
       },
-
 
 
     }

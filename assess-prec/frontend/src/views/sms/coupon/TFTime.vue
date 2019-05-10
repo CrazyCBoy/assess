@@ -18,15 +18,7 @@
               placeholder="请选择时间">
             </el-date-picker>
           </el-form-item>
-          <el-form-item label="数据类型：">
-            <el-select v-model="listQuery.status" class="input-width" placeholder="全部" clearable>
-              <el-option v-for="item in statusOptions"
-                         :key="item.value"
-                         :label="item.label"
-                         :value="item.value">
-              </el-option>
-            </el-select>
-          </el-form-item>
+
           <el-form-item label="选择小时：">
             <el-select v-model="listQuery.orderType" class="input-width" placeholder="全部" clearable>
               <el-option v-for="item in orderTypeOptions"
@@ -116,7 +108,7 @@
     ]
   };
   export default {
-    name: "orderOnce",
+    name: "couponTF",
 
     data() {
       return {
@@ -143,63 +135,10 @@
           content:null,
           orderIds:[]
         },
-        statusOptions: [
-          {
-            label: 'TS',
-            value: 0
-          },
-          {
-            label: 'ETS',
-            value: 1
-          },
-          {
-            label: 'BIAS',
-            value: 2
-          },
-          {
-            label: 'PSS',
-            value: 3
-          },
-          {
-            label: 'ACCURACY',
-            value: 4
-          },
-          {
-            label: 'POD',
-            value: 5
-          },
-          {
-            label: 'POFD',
-            value: 6
-          },
-          {
-            label: 'EDI',
-            value: 7
-          },
-          {
-            label: 'SEDI',
-            value: 8
-          }
-        ],
         orderTypeOptions: [
           {
             value: 0,
-            label: '1hrs'
-          }, {
-            value: 1,
-            label: '2hrs'
-          }, {
-            value: 2,
-            label: '3hrs'
-          }, {
-            value: 3,
-            label: '4hrs'
-          }, {
-            value: 4,
-            label: '5hrs'
-          }, {
-            value: 5,
-            label: '6hrs'
+            label: '12-36 hrs'
           }
         ],
         operateOptions: [
@@ -212,21 +151,30 @@
             value: 2
           },
           {
-            label: "p1.6",
+            label: "p1",
             value: 3
           }, {
             label: "p5",
             value: 4
           }, {
-            label: "p7",
+            label: "p10",
             value: 5
           },{
             label: "p15",
             value: 6
           },{
-            label: "p40",
+            label: "p25",
             value: 7
-          },
+          },{
+            label: "p35",
+            value: 8
+          },{
+            label: "p50",
+            value: 9
+          },{
+            label: "p100",
+            value: 10
+          }
         ],
         logisticsDialogVisible:false
       }
@@ -234,6 +182,43 @@
     created() {
       this.getData();
       this.initOrderCountDate();
+    },
+    filters: {
+      formatCreateTime(time) {
+        let date = new Date(time);
+        return formatDate(date, 'yyyy-MM-dd hh:mm:ss')
+      },
+      formatPayType(value) {
+        if (value === 1) {
+          return '支付宝';
+        } else if (value === 2) {
+          return '微信';
+        } else {
+          return '未支付';
+        }
+      },
+      formatSourceType(value) {
+        if (value === 1) {
+          return 'APP订单';
+        } else {
+          return 'PC订单';
+        }
+      },
+      formatStatus(value) {
+        if (value === 1) {
+          return '待发货';
+        } else if (value === 2) {
+          return '已发货';
+        } else if (value === 3) {
+          return '已完成';
+        } else if (value === 4) {
+          return '已关闭';
+        } else if (value === 5) {
+          return '无效订单';
+        } else {
+          return '待付款';
+        }
+      },
     },
     methods: {
       handleDateChange(){

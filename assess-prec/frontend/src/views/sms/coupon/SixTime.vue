@@ -4,8 +4,19 @@
       <div>
         <i class="el-icon-search"></i>
         <span>选择数据</span>
-        <el-button style="float:right" type="primary" @click="handleSearchList()" size="small">查询搜索</el-button>
-        <el-button style="float:right;margin-right: 15px" @click="handleResetSearch()" size="small">重置</el-button>
+        <el-button
+          style="float:right"
+          type="primary"
+          @click="handleSearchList()"
+          size="small">
+          查询搜索
+        </el-button>
+        <el-button
+          style="float:right;margin-right: 15px"
+          @click="handleResetSearch()"
+          size="small">
+          重置
+        </el-button>
       </div>
       <div style="margin-top: 15px">
         <el-form :inline="true" :model="listQuery" size="small" label-width="140px">
@@ -18,15 +29,7 @@
               placeholder="请选择时间">
             </el-date-picker>
           </el-form-item>
-          <el-form-item label="数据类型：">
-            <el-select v-model="listQuery.status" class="input-width" placeholder="全部" clearable>
-              <el-option v-for="item in statusOptions"
-                         :key="item.value"
-                         :label="item.label"
-                         :value="item.value">
-              </el-option>
-            </el-select>
-          </el-form-item>
+
           <el-form-item label="选择小时：">
             <el-select v-model="listQuery.orderType" class="input-width" placeholder="全部" clearable>
               <el-option v-for="item in orderTypeOptions"
@@ -116,7 +119,7 @@
     ]
   };
   export default {
-    name: "orderOnce",
+    name: "couponSix",
 
     data() {
       return {
@@ -143,63 +146,25 @@
           content:null,
           orderIds:[]
         },
-        statusOptions: [
-          {
-            label: 'TS',
-            value: 0
-          },
-          {
-            label: 'ETS',
-            value: 1
-          },
-          {
-            label: 'BIAS',
-            value: 2
-          },
-          {
-            label: 'PSS',
-            value: 3
-          },
-          {
-            label: 'ACCURACY',
-            value: 4
-          },
-          {
-            label: 'POD',
-            value: 5
-          },
-          {
-            label: 'POFD',
-            value: 6
-          },
-          {
-            label: 'EDI',
-            value: 7
-          },
-          {
-            label: 'SEDI',
-            value: 8
-          }
-        ],
         orderTypeOptions: [
           {
             value: 0,
-            label: '1hrs'
+            label: '00-06 hrs'
           }, {
             value: 1,
-            label: '2hrs'
+            label: '06-12 hrs'
           }, {
             value: 2,
-            label: '3hrs'
+            label: '12-18 hrs'
           }, {
             value: 3,
-            label: '4hrs'
+            label: '18-24 hrs'
           }, {
             value: 4,
-            label: '5hrs'
+            label: '24-30 hrs'
           }, {
             value: 5,
-            label: '6hrs'
+            label: '30-36 hrs'
           }
         ],
         operateOptions: [
@@ -212,21 +177,27 @@
             value: 2
           },
           {
-            label: "p1.6",
+            label: "p1",
             value: 3
           }, {
-            label: "p5",
+            label: "p2",
             value: 4
           }, {
-            label: "p7",
+            label: "p4",
             value: 5
           },{
-            label: "p15",
+            label: "p5",
             value: 6
           },{
-            label: "p40",
+            label: "p10",
             value: 7
-          },
+          },{
+            label: "p13",
+            value: 8
+          },{
+            label: "p25",
+            value: 9
+          }
         ],
         logisticsDialogVisible:false
       }
