@@ -44,13 +44,12 @@
       .el-aside {
         width: 330px !important;
         float: left;
-        position: fixed;
+
         z-index: 9;
         .scroll-container {
           margin-top: 60px;
           left: -10px;
         }
-
       }
     }
   }

@@ -17,14 +17,6 @@ const app = {
       }
       state.sidebar.opened = !state.sidebar.opened
     },
-    CLOSE_SIDEBAR: (state, withoutAnimation) => {
-      Cookies.set('sidebarStatus', 1)
-      state.sidebar.opened = false
-      state.sidebar.withoutAnimation = withoutAnimation
-    },
-    TOGGLE_DEVICE: (state, device) => {
-      state.device = device
-    }
   },
   actions: {
     ToggleSideBar: ({ commit }) => {

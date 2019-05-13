@@ -8,8 +8,7 @@
                 <el-col :span="12" :xs="19" :sm="16">
                     <div class="grid-content bg-purple-light">
                         <el-menu :default-active="activeIndex2" class="el-menu-demo" mode="horizontal"
-                                 background-color="#304156" text-color="#fff" active-text-color="#ffd04b">
-
+                                 background-color="#000000" text-color="#fff" active-text-color="#ffd04b">
                             <el-menu-item index="5" v-if="!isAuthenticated" >
                                 <el-button type="info" @click="entry">登录</el-button>
                             </el-menu-item>
@@ -81,7 +80,7 @@
       position: fixed;
         text-align: right;
         line-height: 60px;
-        background-color: #304156;
+        background-color: #000000;
         color: #fff;
 
         li {

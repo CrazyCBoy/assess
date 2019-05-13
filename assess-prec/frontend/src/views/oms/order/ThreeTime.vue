@@ -93,7 +93,6 @@
   </div>
 </template>
 <script>
-  import {formatDate} from '@/utils/date';
   import {str2Date} from '@/utils/date';
 
   const defaultListQuery = {

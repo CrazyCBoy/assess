@@ -17,8 +17,6 @@ export default {
     Navbar,//控制右侧页面上方导航组件
    //Sidebar,//控制左侧页面组件，Sidebar文件夹
     AppMain,//控制右侧组件内容
-
-
   },
   computed: {
   }
@@ -32,5 +30,6 @@ export default {
     position: relative;
     height: 100%;
     width: 100%;
+    left: -200px;
   }
 </style>

@@ -4,23 +4,23 @@
       <div>
         <i class="el-icon-search"></i>
         <span>选择数据</span>
-        <el-button style="float:right" type="primary" @click="handleSearchList()" size="small">查询搜索</el-button>
+        <el-button style="float:right" type="primary" @click="handleSearchList()" size="small">查询数据</el-button>
         <el-button style="float:right;margin-right: 15px" @click="handleResetSearch()" size="small">重置</el-button>
       </div>
       <div style="margin-top: 15px">
-        <el-form :inline="true" :model="listQuery" size="small" label-width="140px">
-          <el-form-item label="提交时间：">
+        <el-form :inline="true" :model="listData" size="small" label-width="140px">
+          <el-form-item label="选择日期：">
             <el-date-picker
               class="input-width"
-              v-model="listQuery.createTime"
+              v-model="listData.chooseDay"
               value-format="yyyy-MM-dd"
               type="date"
               placeholder="请选择时间">
             </el-date-picker>
           </el-form-item>
           <el-form-item label="SCALE：">
-            <el-select v-model="listQuery.status" class="input-width" placeholder="全部" clearable>
-              <el-option v-for="item in statusOptions"
+            <el-select v-model="listData.chooseScale" class="input-width" placeholder="全部" clearable>
+              <el-option v-for="item in scaleOptions"
                          :key="item.value"
                          :label="item.label"
                          :value="item.value">
@@ -28,8 +28,8 @@
             </el-select>
           </el-form-item>
           <el-form-item label="选择小时：">
-            <el-select v-model="listQuery.orderType" class="input-width" placeholder="全部" clearable>
-              <el-option v-for="item in orderTypeOptions"
+            <el-select v-model="listData.chooseHours" class="input-width" placeholder="全部" clearable>
+              <el-option v-for="item in hoursOptions"
                          :key="item.value"
                          :label="item.label"
                          :value="item.value">
@@ -52,7 +52,6 @@
           </el-col>
           <el-col :span="20">
             <div style="padding: 10px;border-left:1px solid #DCDFE6">
-
               <div>
                 <ve-line
                   :data="chartData"
@@ -74,41 +73,28 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         layout="total, sizes,prev, pager, next,jumper"
-        :current-page.sync="listQuery.pageNum"
-        :page-size="listQuery.pageSize"
+        :current-page.sync="listData.pageNum"
+        :page-size="listData.pageSize"
         :page-sizes="[5,10,15]"
         :total="total">
       </el-pagination>
     </div>
 
-    <logistics-dialog v-model="logisticsDialogVisible"></logistics-dialog>
   </div>
 </template>
 <script>
-  import {formatDate} from '@/utils/date';
-  import {str2Date} from '@/utils/date';
 
   const defaultListQuery = {
     pageNum: 1,
     pageSize: 10,
-    orderSn: null,
-    receiverKeyword: null,
-    status: null,
-    orderType: null,
-    sourceType: null,
-    createTime: null,
+    chooseScale: null,
+    chooseDate: null,
+    chooseHours: null,
+    chooseDay: null,
   };
-  const DATA_FROM_BACKEND = {
-    columns: ['date', 'orderCount','orderAmount'],
-    rows: [
-      {date: '2018-11-01', orderCount: 10, orderAmount: 1093},
-      {date: '2018-11-02', orderCount: 20, orderAmount: 9999},
-      {date: '2018-11-03', orderCount: 33, orderAmount: 0},
-      {date: '2018-11-04', orderCount: 50, orderAmount: 6423},
-    ]
-  };
+
   export default {
-    name: "productList",
+    name: "spatialhourly",
 
     data() {
       return {
@@ -124,18 +110,14 @@
         },
         loading: false,
         dataEmpty: false,
-        listQuery: Object.assign({}, defaultListQuery),
+        listData: Object.assign({}, defaultListQuery),
         listLoading: true,
-        list: null,
+
         total: null,
-        operateType: null,
-        multipleSelection: [],
-        closeOrder:{
-          dialogVisible:false,
-          content:null,
-          orderIds:[]
-        },
-        statusOptions: [
+
+
+
+        scaleOptions: [
           {
             value: 0,
             label: 'mean'
@@ -162,7 +144,7 @@
             label: 'SCALE(65X)'
           }
         ],
-        orderTypeOptions: [
+        hoursOptions: [
           {
             value: 0,
             label: '1hrs'
@@ -193,9 +175,86 @@
           }, {
             value: 9,
             label: '10hrs'
+          }, {
+            value: 10,
+            label: '11hrs'
+          }, {
+            value: 11,
+            label: '12hrs'
+          }, {
+            value: 12,
+            label: '13hrs'
+          }, {
+            value: 13,
+            label: '14hrs'
+          }, {
+            value: 14,
+            label: '15hrs'
+          }, {
+            value: 15,
+            label: '16hrs'
+          }, {
+            value: 16,
+            label: '17hrs'
+          }, {
+            value: 17,
+            label: '18hrs'
+          }, {
+            value: 18,
+            label: '19hrs'
+          }, {
+            value: 19,
+            label: '20hrs'
+          }, {
+            value: 20,
+            label: '21hrs'
+          }, {
+            value: 21,
+            label: '22hrs'
+          }, {
+            value: 22,
+            label: '23hrs'
+          }, {
+            value: 23,
+            label: '24hrs'
+          }, {
+            value: 24,
+            label: '25hrs'
+          }, {
+            value: 25,
+            label: '26hrs'
+          }, {
+            value: 26,
+            label: '27hrs'
+          }, {
+            value: 27,
+            label: '28hrs'
+          }, {
+            value: 28,
+            label: '29hrs'
+          }, {
+            value: 29,
+            label: '30hrs'
+          }, {
+            value: 30,
+            label: '31hrs'
+          }, {
+            value: 31,
+            label: '32hrs'
+          }, {
+            value: 32,
+            label: '33hrs'
+          }, {
+            value: 33,
+            label: '34hrs'
+          }, {
+            value: 34,
+            label: '35hrs'
+          }, {
+            value: 35,
+            label: '36hrs'
           }
         ],
-        logisticsDialogVisible:false
       }
     },
     created() {
@@ -207,22 +266,29 @@
         this.getData();
       },
       getData(){
+        //在这个方法中向后台发送数据
+        //将拿到的数据放入DATA_FROM_BACKEND
+        defaultmeanData({
+
+        });
+
+
+        //每隔一秒
         setTimeout(() => {
           this.chartData = {
             columns: ['date', 'orderCount','orderAmount'],
-            rows: []
+            rows: [
+              {date: '2018-11-01', orderCount: 10, orderAmount: 1093},
+              {date: '2018-11-02', orderCount: 20, orderAmount: 9999},
+              {date: '2018-11-03', orderCount: 33, orderAmount: 0},
+              {date: '2018-11-04', orderCount: 50, orderAmount: 6423},
+            ]
           };
-          for(let i=0;i<DATA_FROM_BACKEND.rows.length;i++){
-            let item=DATA_FROM_BACKEND.rows[i];
-            let currDate=str2Date(item.date);
-            let start=this.orderCountDate[0];
-            let end=this.orderCountDate[1];
-            if(currDate.getTime()>=start.getTime()&&currDate.getTime()<=end.getTime()){
-              this.chartData.rows.push(item);
-            }
-          }
+
           this.dataEmpty = false;
           this.loading = false
+
+
         }, 1000)
       },
       initOrderCountDate(){
@@ -235,20 +301,17 @@
         this.orderCountDate=[start,end];
       },
       handleResetSearch() {
-        this.listQuery = Object.assign({}, defaultListQuery);
+        this.listData = Object.assign({}, defaultListQuery);
       },
       handleSearchList() {
-        this.listQuery.pageNum = 1;
-        this.getList();
+        this.listData.pageNum = 1;
       },
       handleSizeChange(val){
-        this.listQuery.pageNum = 1;
-        this.listQuery.pageSize = val;
-        this.getList();
+        this.listData.pageNum = 1;
+        this.listData.pageSize = val;
       },
       handleCurrentChange(val){
-        this.listQuery.pageNum = val;
-        this.getList();
+        this.listData.pageNum = val;
       },
 
 

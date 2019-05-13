@@ -25,7 +25,7 @@
     .el-footer {
       position: fixed;
         text-align: center;
-         background-color: #304156;
+         background-color: #000000;
          color: #9b9b9b;
          width: 100%;
          height: 60px !important;
