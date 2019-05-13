@@ -8,16 +8,17 @@ import locale from 'element-ui/lib/locale/lang/zh-CN' // lang i18n
 import VCharts from 'v-charts'
 
 import '@/styles/index.scss' // global css
+import axios from 'axios'
 
 import App from './App'
 import router from './router'
 import store from './store'
 import echarts from 'echarts'
 
+
 //import '@/icons' // icon
 //import '@/permission' // permission control
-
-
+Vue.prototype.$axios = axios;
 
 Vue.prototype.$echarts = echarts
 

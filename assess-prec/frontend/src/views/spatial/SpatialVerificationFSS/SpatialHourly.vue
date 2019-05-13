@@ -4,7 +4,7 @@
       <div>
         <i class="el-icon-search"></i>
         <span>选择数据</span>
-        <el-button style="float:right" type="primary" @click="handleSearchList()" size="small">查询数据</el-button>
+        <el-button style="float:right" type="primary" @click="confirm()" size="small">查询数据</el-button>
         <el-button style="float:right;margin-right: 15px" @click="handleResetSearch()" size="small">重置</el-button>
       </div>
       <div style="margin-top: 15px">
@@ -35,8 +35,10 @@
                          :value="item.value">
               </el-option>
             </el-select>
-          </el-form-item>
 
+            <el-button @click="test('listData')" >查询aaaaaaaaa</el-button>
+
+          </el-form-item>
         </el-form>
       </div>
     </el-card>
@@ -63,6 +65,9 @@
             </div>
           </el-col>
         </el-row>
+        <div >
+
+        </div>
       </div>
 
     </el-card>
@@ -83,15 +88,16 @@
   </div>
 </template>
 <script>
+  import {mapState, mapActions} from "vuex";
 
-  const defaultListQuery = {
+  /*const defaultListQuery = {
     pageNum: 1,
     pageSize: 10,
     chooseScale: null,
     chooseDate: null,
     chooseHours: null,
     chooseDay: null,
-  };
+  };*/
 
   export default {
     name: "spatialhourly",
@@ -105,17 +111,22 @@
           axisSite: { right: ['orderAmount']},
           labelMap: {'orderCount': '订单数量', 'orderAmount': '订单金额'}},
         chartData: {
-          columns: [],
-          rows: []
+          columns: ['date', 'orderCount','orderAmount'],
+          rows: [
+            {date: '2018-11-01', orderCount: 10, orderAmount: 1093},
+            {date: '2018-11-02', orderCount: 20, orderAmount: 9999},
+            {date: '2018-11-03', orderCount: 33, orderAmount: 0},
+            {date: '2018-11-04', orderCount: 50, orderAmount: 6423},
+          ]
         },
         loading: false,
         dataEmpty: false,
-        listData: Object.assign({}, defaultListQuery),
-        listLoading: true,
-
+        listData: {
+          chooseDay: "",
+          chooseScale: "",
+          chooseHours: "",
+        },
         total: null,
-
-
 
         scaleOptions: [
           {
@@ -125,7 +136,7 @@
             value: 1,
             label: 'SCALE(3X)'
           }, {
-            value: 5,
+            value: 2,
             label: 'SCALE(5X)'
           },{
             value: 3,
@@ -258,50 +269,86 @@
       }
     },
     created() {
-      this.getData();
-      this.initOrderCountDate();
+
+      Object.assign(this.listData, this.OptionValue);
+    },
+    computed: {
+      ...mapState({
+        OptionValue: state => state.chooseData
+      })
     },
     methods: {
+      test(listData){
+        console.log("123")
+          this.$refs[listData].validate(valid => {
+
+          if (valid) {
+            this.dispatch("defaultmeanData", this.listData)
+              .then(() => {
+                // this.loading = false;
+                this.$router.push({path: "/"});
+              })
+              .catch(() => {
+                this.loading = false;
+              });
+            // console.log("success")
+          } else {
+            // console.log("error submit!!");
+            return false;
+          }
+        });
+      },
+
+
+
+     /* ...mapActions({
+        defaultmeanData:"defaultmeanData",
+      }),*/
+      confirm(){
+        this.$axios.get(
+          '/home',{
+            params:{
+              chooseDate:"",
+              chooseScale:"",
+              chooseHours:""
+            }
+          }
+        ).then(successResponse => {
+            if(successResponse.data.code ===200){
+              this.$route.replace({path:'/index'})
+            }else {
+              this.$route.replace({path:'/home'})
+            }
+          }).catch(failResponse => {
+        })
+    },
+
+       /* this.$refs[listData].validate(valid => {
+            this.$store
+              .dispatch("defaultmeanData","abcdefghijklmn")
+              .then(() => {
+              })
+              .catch(() => {
+                this.loading = false;
+              })
+        });/*
+      getData(listData){
+        //拿到初始数据并展示
+        SpatiaData(this.listData).then(response => {
+          this.chooseDate= response.data.chooseDate;
+          this.chooseScale= response.data.chooseScale;
+          this.chooseHours= response.data.chooseHours;
+          this.chooseData= response.data.chooseData;
+
+        });
+      },*/
+
       handleDateChange(){
         this.getData();
       },
-      getData(){
-        //在这个方法中向后台发送数据
-        //将拿到的数据放入DATA_FROM_BACKEND
-        defaultmeanData({
 
-        });
-
-
-        //每隔一秒
-        setTimeout(() => {
-          this.chartData = {
-            columns: ['date', 'orderCount','orderAmount'],
-            rows: [
-              {date: '2018-11-01', orderCount: 10, orderAmount: 1093},
-              {date: '2018-11-02', orderCount: 20, orderAmount: 9999},
-              {date: '2018-11-03', orderCount: 33, orderAmount: 0},
-              {date: '2018-11-04', orderCount: 50, orderAmount: 6423},
-            ]
-          };
-
-          this.dataEmpty = false;
-          this.loading = false
-
-
-        }, 1000)
-      },
-      initOrderCountDate(){
-        let start = new Date();
-        start.setFullYear(2018);
-        start.setMonth(10);
-        start.setDate(1);
-        const end = new Date();
-        end.setTime(start.getTime() + 1000 * 60 * 60 * 24 * 7);
-        this.orderCountDate=[start,end];
-      },
       handleResetSearch() {
-        this.listData = Object.assign({}, defaultListQuery);
+        this.listData = Object.assign({}, OptionValue);
       },
       handleSearchList() {
         this.listData.pageNum = 1;
@@ -313,8 +360,6 @@
       handleCurrentChange(val){
         this.listData.pageNum = val;
       },
-
-
     }
   }
 </script>
