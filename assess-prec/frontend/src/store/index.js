@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import app from './modules/app'
 import user from './modules/user'
-//import SpatiaData from '../api/Spatia'
+import {SpatiaData} from '../api/Spatia'
 import getters from './getters'
 
 Vue.use(Vuex)
@@ -48,8 +48,6 @@ mutations:{
               reject(error)
             })
           })*!/
-
-
         }*/
     defaultmeanData({commit}, loginForm) {
       return new Promise((resolve, reject) => {

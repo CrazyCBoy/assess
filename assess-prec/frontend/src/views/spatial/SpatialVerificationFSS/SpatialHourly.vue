@@ -8,7 +8,7 @@
         <el-button style="float:right;margin-right: 15px" @click="handleResetSearch()" size="small">重置</el-button>
       </div>
       <div style="margin-top: 15px">
-        <el-form :inline="true" :model="listData" size="small" label-width="140px">
+        <el-form :inline="true" :model="listData" size="small" label-width="140px" ref="listData">
           <el-form-item label="选择日期：">
             <el-date-picker
               class="input-width"
@@ -279,11 +279,12 @@
     },
     methods: {
       test(listData){
-        console.log("123")
           this.$refs[listData].validate(valid => {
 
           if (valid) {
-            this.dispatch("defaultmeanData", this.listData)
+            console.log("123")
+
+            this.$store.dispatch("defaultmeanData", this.listData)
               .then(() => {
                 // this.loading = false;
                 this.$router.push({path: "/"});
@@ -298,8 +299,6 @@
           }
         });
       },
-
-
 
      /* ...mapActions({
         defaultmeanData:"defaultmeanData",
