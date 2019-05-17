@@ -54,12 +54,7 @@
             <div style="padding: 10px;border-left:1px solid #DCDFE6">
 
               <div>
-                <ve-line
-                  :data="chartData"
-                  :legend-visible="false"
-                  :loading="loading"
-                  :data-empty="dataEmpty"
-                  :settings="chartSettings"></ve-line>
+                <div class="seven_echarts"  id="seven"></div>
               </div>
             </div>
           </el-col>
@@ -85,7 +80,6 @@
   </div>
 </template>
 <script>
-  import {formatDate} from '@/utils/date';
   import {str2Date} from '@/utils/date';
 
   const defaultListQuery = {
@@ -98,32 +92,164 @@
     sourceType: null,
     createTime: null,
   };
-  const DATA_FROM_BACKEND = {
-    columns: ['date', 'orderCount','orderAmount'],
-    rows: [
-      {date: '2018-11-01', orderCount: 10, orderAmount: 1093},
-      {date: '2018-11-02', orderCount: 20, orderAmount: 9999},
-      {date: '2018-11-03', orderCount: 33, orderAmount: 0},
-      {date: '2018-11-04', orderCount: 50, orderAmount: 6423},
-    ]
-  };
   export default {
     name: "ThreeProduct",
 
     data() {
       return {
         orderCountDate: '',
-        chartSettings: {
-          xAxisType: 'time',
-          area:true,
-          axisSite: { right: ['orderAmount']},
-          labelMap: {'orderCount': '订单数量', 'orderAmount': '订单金额'}},
-        chartData: {
-          columns: [],
-          rows: []
+
+        seven_option: {
+          title: {
+            text: 'GRAPES降水检测',//感觉头部有点乱，没使用自带的标题
+            x: 'left',
+            align: 'center'
+          },
+          tooltip: {
+            trigger: 'axis'
+          },
+          legend: {
+            data: [{name: 'T639'},
+              {name: 'GRAPES'},
+              {name: 'GRAPESPAR'}],
+            bottom: 350,
+            left: 100,
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          toolbox: {
+            feature: {
+              magicType: {
+                type: ['line']//这里添加图表样式，如['line','bar']折现加柱状
+              }
+            }
+          },
+          xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ["1DEC", "6DEC", "11DEC", "16DEC", "21DEC", "26DEC", "31DEC"]
+          },
+          yAxis: {
+            nameLocation: 'end',
+            type: 'value',
+            axisLabel: {
+              formatter: '{value} '
+            }
+          },
+          series: [
+            {
+              name: 'GRAPES',
+              data: [0.8, 0.79, 0.72, 0.86, 0.81, 0.77, 0.82],
+              type: 'line',
+              symbol: 'triangle',//三角形
+              symbolSize: 10,//三角大小
+              lineStyle: {
+                normal: {//虚线
+                  color: 'red',
+                  type: 'dashed'
+                }
+              },
+              itemStyle: {
+                normal: {
+                  borderWidth: 3,
+                  borderColor: 'red',
+                  color: 'red'
+                }
+              }
+            },
+            /* {
+                  name:'最低气温',
+                  type:'line',
+                  data:[0,-1,-3,-4,0,-2,-4],
+                  lineStyle:{//设置折线色颜色
+                    color:'#3f89ec'
+                  },
+                  itemStyle:{//设置折线折点的颜色
+                    normal : {
+                      color:'#3f89ec'
+                    }
+                  }
+                },*/
+            {
+              name: 'T639',
+              type: 'line',
+              data: [0.85, 0.7, 0.82, 0.79, 0.88, 0.77, 0.89],
+              lineStyle: {//设置折线色颜色,不设置默认为红
+                color: 'black'
+              },
+              itemStyle: {//设置折线折点的颜色
+                normal: {
+                  color: 'black'
+                }
+              }
+            },
+            /* {
+                  name:'GRAPES',
+                  type:'line',
+                  data:[0.68,0.75,0.68,0.84,0.98,0.77,0.89],
+                  lineStyle:{//设置折线色颜色,不设置默认为红
+                    color:'red'
+                  },
+                  itemStyle:{//设置折线折点的颜色
+                    normal : {
+                      color:'red'
+                    }
+                  }
+                },*/
+            {
+              name: 'GRAPESPAR',
+              type: 'line',
+              data: [0.8, 0.85, 0.78, 0.84, 0.88, 0.87, 0.89],
+              symbol: 'image://https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1557829283004&di=dc38a9a4e512949084b45a9260e9a963&imgtype=0&src=http%3A%2F%2Ft7.baidu.com%2Fit%2Fu%3D2675801298%2C2422093698%26fm%3D191%26app%3D48%26wm%3D1%2C17%2C90%2C45%2C20%2C7%26wmo%3D0%2C0%26n%3D0%26g%3D0n%26f%3DJPEG%3Fsec%3D1853310920%26t%3D6cb8c84bc4e3e8e0443f3972bfc09717',//三角形  小圆点pin 菱形diamond  朝上箭头arrow  圆边正方形roundRect rect 圆circle
+              symbolSize: 10,
+              lineStyle: {//设置折线色颜色,不设置默认为红
+                normal: {//虚线属性
+                  color: 'green',
+                  type: 'dashed'//虚线dashed
+                }
+              },
+              itemStyle: {//设置折线折点的颜色
+                normal: {
+                  color: 'green'
+                }
+              },
+              itemStyle: {
+                normal: {
+                  borderWidth: 3,
+                  borderColor: 'green',
+                  color: 'green'
+                }
+              }
+            },
+            /* {
+                  name:'平行于y轴的趋势线',
+                  type:'line',
+                  markLine: {
+                    name:'aa',
+                    data: [
+                      {
+                        name: '0℃标准线',
+                        yAxis: 0,
+                        lineStyle:{//设置折线色颜色
+                          color:'red'
+                        },
+                      },
+                    ],
+                    symbol: ['arrow', 'none'],//将箭头向左  默认值是向右的
+                    label:{
+                      show:true,
+                      position:'middle',//markline描述位于中间   right，left，middle
+                      formatter: '{b}: {c}',//显示name中的描述
+                    }
+                  }
+                }*/
+          ],
         },
-        loading: false,
-        dataEmpty: false,
+
         listQuery: Object.assign({}, defaultListQuery),
         listLoading: true,
         list: null,
@@ -208,7 +334,17 @@
       this.getData();
       this.initOrderCountDate();
     },
+    mounted:function (){
+      this.get_echarts();
+
+    },
     methods: {
+      get_echarts:function(){
+        this.seven_chart = this.echarts.init(document.getElementById("seven"));
+        // 把配置和数据放这里
+        this.seven_chart.setOption(this.seven_option)
+
+      },
       handleDateChange(){
         this.getData();
       },
@@ -265,6 +401,7 @@
   .input-width {
     width: 203px;
   }
+  .seven_echarts{ height: 600px; width:700px; }
 </style>
 
 

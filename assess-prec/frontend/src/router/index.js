@@ -5,6 +5,7 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '../views/layout/Layout'
+import HighChartsColumnRange from "../charts/HighChartsColumnRange";
 
 let constantRouterMap;
 constantRouterMap = [
@@ -20,6 +21,13 @@ constantRouterMap = [
       component: () => import('@/views/home/index'),
       meta: {title: '首页'}
     }]
+  },
+  {
+    path: '/range',
+    component: HighChartsColumnRange,
+    //redirect: '/charts/HighChartsColumnRange',
+    name: 'HighChartsColumnRange',
+    meta: {title: '图 '},
   },
   {
     path: '/spatial',

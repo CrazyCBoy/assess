@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/assess.iml" filepath="$PROJECT_DIR$/.idea/assess.iml" />
       <module fileurl="file://$PROJECT_DIR$/assess-prec/assess-prec.iml" filepath="$PROJECT_DIR$/assess-prec/assess-prec.iml" />
       <module fileurl="file://$PROJECT_DIR$/assess-prec/backend/assess-prec-backend.iml" filepath="$PROJECT_DIR$/assess-prec/backend/assess-prec-backend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/assess-prec/backend/assess-prec-backend.iml" filepath="$PROJECT_DIR$/assess-prec/backend/assess-prec-backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/assess-prec/frontend/assess-prec-frontend.iml" filepath="$PROJECT_DIR$/assess-prec/frontend/assess-prec-frontend.iml" />
     </modules>
   </component>

@@ -14,13 +14,13 @@ import App from './App'
 import router from './router'
 import store from './store'
 import echarts from 'echarts'
+Vue.prototype.echarts = echarts;
 
 
 //import '@/icons' // icon
 //import '@/permission' // permission control
 Vue.prototype.$axios = axios;
 
-Vue.prototype.$echarts = echarts
 
 Vue.use(ElementUI, { locale })
 Vue.use(VCharts)

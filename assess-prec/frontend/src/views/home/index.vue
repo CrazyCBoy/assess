@@ -4,78 +4,153 @@
       <el-row :gutter="20">
         <el-col :span="12">
           <div class="out-border">
-            <h1>检测</h1>
+            <h1>内容填充1</h1>
           </div>
         </el-col>
         <el-col :span="12">
           <div class="out-border">
-            <h1>检测</h1>
+            <h1>内容填充2</h1>
           </div>
         </el-col>
       </el-row>
     </div>
 
     <div class="statistics-layout">
-      <div class="layout-title">订单统计</div>
+      <div class="layout-title">置信区间图</div>
       <el-row>
-        <el-col :span="4">
-          <div style="padding: 20px">
-            <div>
-              <div style="color: #909399;font-size: 14px">本月订单总数</div>
-              <div style="color: #606266;font-size: 24px;padding: 10px 0">10000</div>
-              <div>
-                <span class="color-success" style="font-size: 14px">+10%</span>
-                <span style="color: #C0C4CC;font-size: 14px">同比上月</span>
-              </div>
-            </div>
-            <div style="margin-top: 20px;">
-              <div style="color: #909399;font-size: 14px">本周订单总数</div>
-              <div style="color: #606266;font-size: 24px;padding: 10px 0">1000</div>
-              <div>
-                <span class="color-danger" style="font-size: 14px">-10%</span>
-                <span style="color: #C0C4CC;font-size: 14px">同比上周</span>
-              </div>
-            </div>
-            <div style="margin-top: 20px;">
-              <div style="color: #909399;font-size: 14px">本月销售总额</div>
-              <div style="color: #606266;font-size: 24px;padding: 10px 0">100000</div>
-              <div>
-                <span class="color-success" style="font-size: 14px">+10%</span>
-                <span style="color: #C0C4CC;font-size: 14px">同比上月</span>
-              </div>
-            </div>
-            <div style="margin-top: 20px;">
-              <div style="color: #909399;font-size: 14px">本周销售总额</div>
-              <div style="color: #606266;font-size: 24px;padding: 10px 0">50000</div>
-              <div>
-                <span class="color-danger" style="font-size: 14px">-10%</span>
-                <span style="color: #C0C4CC;font-size: 14px">同比上周</span>
-              </div>
-            </div>
-          </div>
-        </el-col>
+
         <el-col :span="20">
           <div style="padding: 10px;border-left:1px solid #DCDFE6">
-            <el-date-picker
-              style="float: right;z-index: 1"
-              size="small"
-              v-model="orderCountDate"
-              type="daterange"
-              align="right"
-              unlink-panels
-              range-separator="至"
-              start-placeholder="开始日期"
-              end-placeholder="结束日期"
-              @change="handleDateChange"
-              :picker-options="pickerOptions">
-            </el-date-picker>
             <div>
-              <ve-line
-                :data="chartData"
-                :legend-visible="false"
-                :loading="loading"
-                :data-empty="dataEmpty"
-                :settings="chartSettings"></ve-line>
+              <highcharts-container :defOptions="options" :styles="sty"></highcharts-container>
+
+            </div>
+            <div><h3>通过给table传入span-method方法可以实现合并行或列，方法的参数是一个对象，<br>
+              里面包含当前行row、当前列column、当前行号rowIndex、当前列号columnIndex四个属性。<br>
+              该函数可以返回一个包含两个元素的数组，第一个元素代表rowspan，第二个元素代表colspan。<br>
+              也可以返回一个键名为rowspan和colspan的对象。</h3>
+
+
+              <el-table
+                :data="tableData"
+                :span-method="objectSpanMethod"
+                border
+                style="width: 100% ; margin-top: 20px;font-size: 10px">
+                <el-table-column
+                  prop="id"
+                  label="Dmoain"
+                  width="70">
+                </el-table-column>
+                <el-table-column
+                  prop="name"
+                  width="50"
+                  label="Paramater">
+                </el-table-column>
+                <el-table-column
+                  prop="amount1"
+                  width="50"
+                  label="Level">
+                </el-table-column>
+                <el-table-column
+                  width="30"
+                  prop="amount2"
+                  label="A">
+                </el-table-column>
+                <el-table-column
+                  width="30"
+                  prop="amount2"
+                  label="A">
+                </el-table-column>
+                <el-table-column
+                  width="30"
+                  prop="amount2"
+                  label="A">
+                </el-table-column>
+                <el-table-column
+                  width="30"
+                  prop="amount2"
+                  label="A">
+                </el-table-column>
+                <el-table-column
+                  width="30"
+                  prop="amount2"
+                  label="A">
+                </el-table-column>
+                <el-table-column
+                  width="30"
+                  prop="amount2"
+                  label="A">
+                </el-table-column>
+                <el-table-column
+                  width="30"
+                  prop="amount2"
+                  label="A">
+                </el-table-column><el-table-column
+                width="30"
+                prop="amount2"
+                label="A">
+              </el-table-column><el-table-column
+                width="30"
+                prop="amount2"
+                label="A">
+              </el-table-column>
+                <el-table-column
+                  width="30"
+                  prop="amount2"
+                  label="A">
+                </el-table-column>
+                <el-table-column
+                  prop="amount3"
+                  width="30"
+                  label="RMS ERROR">
+                </el-table-column>
+                <el-table-column
+                  prop="amount3"
+                  width="30"
+                  label="RMS ERROR">
+                </el-table-column>
+                <el-table-column
+                  prop="amount3"
+                  width="30"
+                  label="RMS ERROR">
+                </el-table-column>
+                <el-table-column
+                  prop="amount3"
+                  width="30"
+                  label="RMS ERROR">
+                </el-table-column>
+                <el-table-column
+                  prop="amount3"
+                  width="30"
+                  label="RMS ERROR">
+                </el-table-column>
+                <el-table-column
+                  prop="amount3"
+                  width="30"
+                  label="RMS ERROR">
+                </el-table-column>
+                <el-table-column
+                  prop="amount3"
+                  width="30"
+                  label="RMS ERROR">
+                </el-table-column>
+                <el-table-column
+                  prop="amount3"
+                  width="30"
+                  label="RMS ERROR">
+                </el-table-column>
+                <el-table-column
+                  prop="amount3"
+                  width="30"
+                  label="RMS ERROR">
+                </el-table-column>
+                <el-table-column
+                  prop="amount3"
+                  width="30"
+                  label="RMS ERROR">
+                </el-table-column>
+
+              </el-table>
             </div>
           </div>
         </el-col>
@@ -86,67 +161,217 @@
 
 <script>
   import {str2Date} from '@/utils/date';
-  const DATA_FROM_BACKEND = {
-    columns: ['date', 'orderCount','orderAmount'],
-    rows: [
-      {date: '2018-11-01', orderCount: 10, orderAmount: 1093},
-      {date: '2018-11-02', orderCount: 20, orderAmount: 2230},
-      {date: '2018-11-03', orderCount: 33, orderAmount: 3623},
-      {date: '2018-11-04', orderCount: 50, orderAmount: 6423},
-      {date: '2018-11-05', orderCount: 80, orderAmount: 8492},
-      {date: '2018-11-06', orderCount: 60, orderAmount: 6293},
-      {date: '2018-11-07', orderCount: 20, orderAmount: 2293},
-      {date: '2018-11-08', orderCount: 60, orderAmount: 6293},
-      {date: '2018-11-09', orderCount: 50, orderAmount: 5293},
-      {date: '2018-11-10', orderCount: 30, orderAmount: 3293},
-      {date: '2018-11-11', orderCount: 20, orderAmount: 2293},
-      {date: '2018-11-12', orderCount: 80, orderAmount: 8293},
-      {date: '2018-11-13', orderCount: 100, orderAmount: 10293},
-      {date: '2018-11-14', orderCount: 10, orderAmount: 1293},
-      {date: '2018-11-15', orderCount: 40, orderAmount: 4293}
-    ]
-  };
+  var jStat = require('jStat').jStat;
+  import HighchartsContainer from '../../components/HighchartsComponent.vue'
+
   export default {
+    components: {
+      HighchartsContainer
+    },
     name: 'home',
     data() {
       return {
-        pickerOptions: {
-          shortcuts: [{
-            text: '最近一周',
-            onClick(picker) {
-              const end = new Date();
-              let start = new Date();
-              start.setFullYear(2018);
-              start.setMonth(10);
-              start.setDate(1);
-              end.setTime(start.getTime() + 3600 * 1000 * 24 * 7);
-              picker.$emit('pick', [start, end]);
-            }
-          }, {
-            text: '最近一月',
-            onClick(picker) {
-              const end = new Date();
-              let start = new Date();
-              start.setFullYear(2018);
-              start.setMonth(10);
-              start.setDate(1);
-              end.setTime(start.getTime() + 3600 * 1000 * 24 * 30);
-              picker.$emit('pick', [start, end]);
-            }
-          }]
-        },
+        tableData: [{
+          id: 'RASI',
+          name: 'UMN',
+          amount1: '234',
+          amount2: '3.2',
+          amount3: 10
+        }, {
+          name: 'VND',
+          amount1: '165',
+          amount2: '4.43',
+          amount3: 12
+        }, {
+          name: 'TEMP',
+          amount1: '324',
+          amount2: '1.9',
+          amount3: 9
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }, {
+          name: 'HGT',
+          amount1: '621',
+          amount2: '2.2',
+          amount3: 17
+        }],
         orderCountDate: '',
-        chartSettings: {
-          xAxisType: 'time',
-          area:true,
-          axisSite: { right: ['orderAmount']},
-        labelMap: {'orderCount': '订单数量', 'orderAmount': '订单金额'}},
-        chartData: {
-          columns: [],
-          rows: []
+        sty: {
+          width: 1200,
+          height: 400
         },
-        loading: false,
-        dataEmpty: false
+        options: {
+          chart: {
+            type: 'columnrange',
+            inverted: false
+          },
+
+          title: {
+            text: 'Temperature variation by month'
+          },
+
+          subtitle: {
+            text: 'Observed in Vik i Sogn, Norway, 2017'
+          },
+
+          xAxis: {
+            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          },
+
+          yAxis: {
+            title: {
+              text: 'Temperature ( °C )'
+            }
+          },
+
+          tooltip: {
+            valueSuffix: '°C'
+          },
+
+          plotOptions: {
+            columnrange: {
+              groupPadding :0.5,
+              dataLabels: {
+                enabled: false,//是否显示数据
+                format: '{y}'//显示哪个轴的数据
+              }
+            }
+          },
+
+          legend: {
+            enabled: false
+          },
+
+          series: [{
+
+            type: 'spline',
+
+            data: [0,7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+            tooltip: {
+              valueSuffix: '°C'
+            }
+          },{
+            //name: '温度',
+            type: 'spline',
+            data: [0, -6.9, -9.5, -14.5, -18.2, -21.5, -25.2, -26.5, -23.3, -18.3, -13.9, -9.6],
+            tooltip: {
+              valueSuffix: '°C'
+            }
+          },
+            {
+              name: 'Temperatures',
+              borderWidth: 2,
+              borderColor:'black',
+              color: 'rgba(255, 255, 255, 0)',
+              pointWidth:40,
+              data: [
+                jStat.tci( 1, 0.05, 1,5),
+                jStat.tci( 1, 0.05, -8.6,8.5),
+                [-10.2, 11.8],
+                [-1.7, 12.2],
+                [-0.6, 23.1],
+                [3.7, 25.4],
+                [6.0, 26.2],
+                [6.7, 21.4],
+                [3.5, 19.5],
+                [-1.3, 16.0],
+                [-8.7, 9.4],
+                [-9.0, 8.6]
+              ]
+            },
+            {
+              name: 'Temperatures',
+              borderWidth: 2,
+              borderColor:'red',
+              pointWidth:30,
+              color: 'rgba(255, 255, 255, 0)',
+
+              data: [
+                [-9.0, 12.3],
+                [-7.6, 9.5],
+                [-10.2, 14.8],
+                [-13.5, 17.2],
+                [-0.6, 23.1],
+                [3.7, 25.4],
+                [6.0, 26.2],
+                [6.7, 21.4],
+                [3.5, 19.5],
+                [-1.3, 16.0],
+                [-8.7, 9.4],
+                [-9.0, 8.6]
+              ]
+            }]
+        }
+
       }
     },
     created(){
@@ -154,6 +379,51 @@
       this.getData();
     },
     methods:{
+/*通过给table传入span-method方法可以实现合并行或列，方法的参数是一个对象，<br>
+              里面包含当前行row、当前列column、当前行号rowIndex、当前列号columnIndex四个属性。<br>
+              该函数可以返回一个包含两个元素的数组，第一个元素代表rowspan，第二个元素代表colspan。<br>
+              也可以返回一个键名为rowspan和colspan的对象。*/
+      objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+        if (columnIndex === 0) {
+          if (rowIndex % 12=== 0) {
+            return {
+              rowspan: 12,
+              colspan: 1
+            };
+          } else {
+            return {
+              rowspan: 0,
+              colspan: 0
+            };
+          }
+        }
+        if(columnIndex===1){
+          if(rowIndex%3===0){
+            return {
+              rowspan: 3,
+              colspan: 1
+            };
+          }else {
+            return {
+              rowspan: 0,
+              colspan: 0
+            };
+          }
+        }
+        /*if(columnIndex===2){
+          if(rowIndex%3===0){
+            return {
+              rowspan: 1,
+              colspan: 1
+            };
+          }else {
+            return {
+              rowspan: 0,
+              colspan: 4
+            };
+          }
+        }*/
+        },
       handleDateChange(){
         this.getData();
       },
