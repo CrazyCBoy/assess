@@ -19,7 +19,7 @@ public class FSSController {
     @GetMapping("/hourly")
     public String user(HourlyEntity hourlyEntity) {
         String hourlyinfo=fssServiceimpl.getinfo(hourlyEntity);
-        return hourlyinfo;
+        return hourlyinfo+"---------------";
     }
 
 }
