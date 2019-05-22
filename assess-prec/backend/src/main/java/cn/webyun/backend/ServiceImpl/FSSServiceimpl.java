@@ -10,6 +10,22 @@ public class FSSServiceimpl implements FSSService{
 
     @Override
     public String getinfo(HourlyEntity hourlyEntity) {
-        return "FSSController----FSSService---getinfo()";
+        Double[] M1=gennerateArray(240,1);
+
+        for (Double a:
+             M1) {
+            System.out.println(a);
+        }
+        return M1.length+"";
     }
+
+    //生成随机数组的方法(小数)
+    public static Double[]  gennerateArray(int len,int max){
+        Double[] arr=new Double[len];
+        for(int i=0;i<arr.length;i++){
+            arr[i]=(Math.random()*max);
+        }
+        return arr;
+    }
+
 }

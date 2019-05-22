@@ -56,99 +56,6 @@
                   prop="amount2"
                   label="A">
                 </el-table-column>
-                <el-table-column
-                  width="30"
-                  prop="amount2"
-                  label="A">
-                </el-table-column>
-                <el-table-column
-                  width="30"
-                  prop="amount2"
-                  label="A">
-                </el-table-column>
-                <el-table-column
-                  width="30"
-                  prop="amount2"
-                  label="A">
-                </el-table-column>
-                <el-table-column
-                  width="30"
-                  prop="amount2"
-                  label="A">
-                </el-table-column>
-                <el-table-column
-                  width="30"
-                  prop="amount2"
-                  label="A">
-                </el-table-column>
-                <el-table-column
-                  width="30"
-                  prop="amount2"
-                  label="A">
-                </el-table-column><el-table-column
-                width="30"
-                prop="amount2"
-                label="A">
-              </el-table-column><el-table-column
-                width="30"
-                prop="amount2"
-                label="A">
-              </el-table-column>
-                <el-table-column
-                  width="30"
-                  prop="amount2"
-                  label="A">
-                </el-table-column>
-                <el-table-column
-                  prop="amount3"
-                  width="30"
-                  label="RMS ERROR">
-                </el-table-column>
-                <el-table-column
-                  prop="amount3"
-                  width="30"
-                  label="RMS ERROR">
-                </el-table-column>
-                <el-table-column
-                  prop="amount3"
-                  width="30"
-                  label="RMS ERROR">
-                </el-table-column>
-                <el-table-column
-                  prop="amount3"
-                  width="30"
-                  label="RMS ERROR">
-                </el-table-column>
-                <el-table-column
-                  prop="amount3"
-                  width="30"
-                  label="RMS ERROR">
-                </el-table-column>
-                <el-table-column
-                  prop="amount3"
-                  width="30"
-                  label="RMS ERROR">
-                </el-table-column>
-                <el-table-column
-                  prop="amount3"
-                  width="30"
-                  label="RMS ERROR">
-                </el-table-column>
-                <el-table-column
-                  prop="amount3"
-                  width="30"
-                  label="RMS ERROR">
-                </el-table-column>
-                <el-table-column
-                  prop="amount3"
-                  width="30"
-                  label="RMS ERROR">
-                </el-table-column>
-                <el-table-column
-                  prop="amount3"
-                  width="30"
-                  label="RMS ERROR">
-                </el-table-column>
 
               </el-table>
             </div>
@@ -163,6 +70,17 @@
   import {str2Date} from '@/utils/date';
   var jStat = require('jStat').jStat;
   import HighchartsContainer from '../../components/HighchartsComponent.vue'
+  import arrdata from '../../assets/js/data'
+
+  var mm1=arrdata.newarr();//240个点
+  var mm2=arrdata.newarr();//240个点
+  var   stam=arrdata.newarr()//240个点，标准线
+  var   arrm1=arrdata.subarr(mm1,stam)//240个点，差值
+  var  arrm2=arrdata.subarr(mm2,stam)//240个点，差值
+  var   averagesarr=arrdata.avgarr(arrm1)//10个点，
+  console.log(arrm1)
+  console.log(arrm1.slice(0,24).map(Number))
+  var  averagesarr2=arrdata.avgarr(arrm2)//10个点
 
   export default {
     components: {
@@ -202,66 +120,6 @@
           amount1: '621',
           amount2: '2.2',
           amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
-        }, {
-          name: 'HGT',
-          amount1: '621',
-          amount2: '2.2',
-          amount3: 17
         }],
         orderCountDate: '',
         sty: {
@@ -283,8 +141,7 @@
           },
 
           xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+            categories: ['24', '48', '72', '96', '120', '144', '168', '192', '216', '240']
           },
 
           yAxis: {
@@ -315,14 +172,14 @@
 
             type: 'spline',
 
-            data: [0,7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+            data: averagesarr,
             tooltip: {
               valueSuffix: '°C'
             }
           },{
             //name: '温度',
             type: 'spline',
-            data: [0, -6.9, -9.5, -14.5, -18.2, -21.5, -25.2, -26.5, -23.3, -18.3, -13.9, -9.6],
+            data: averagesarr2,
             tooltip: {
               valueSuffix: '°C'
             }
@@ -330,22 +187,20 @@
             {
               name: 'Temperatures',
               borderWidth: 2,
-              borderColor:'black',
+              borderColor:'green',
               color: 'rgba(255, 255, 255, 0)',
               pointWidth:40,
               data: [
-                jStat.tci( 1, 0.05, 1,5),
-                jStat.tci( 1, 0.05, -8.6,8.5),
-                [-10.2, 11.8],
-                [-1.7, 12.2],
-                [-0.6, 23.1],
-                [3.7, 25.4],
-                [6.0, 26.2],
-                [6.7, 21.4],
-                [3.5, 19.5],
-                [-1.3, 16.0],
-                [-8.7, 9.4],
-                [-9.0, 8.6]
+                jStat.tci( 0.1, 0.05,arrm1.slice(0,24).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm1.slice(24,48).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm1.slice(48,72).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm1.slice(72,96).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm1.slice(96,120).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm1.slice(120,144).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm1.slice(144,168).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm1.slice(168,192).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm1.slice(192,216).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm1.slice(216,240).map(Number)),
               ]
             },
             {
@@ -356,18 +211,18 @@
               color: 'rgba(255, 255, 255, 0)',
 
               data: [
-                [-9.0, 12.3],
-                [-7.6, 9.5],
-                [-10.2, 14.8],
-                [-13.5, 17.2],
-                [-0.6, 23.1],
-                [3.7, 25.4],
-                [6.0, 26.2],
-                [6.7, 21.4],
-                [3.5, 19.5],
-                [-1.3, 16.0],
-                [-8.7, 9.4],
-                [-9.0, 8.6]
+                jStat.tci( 0.5, 0.05,arrm2.slice(0,24).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm2.slice(24,48).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm2.slice(48,72).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm2.slice(72,96).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm2.slice(96,120).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm2.slice(120,144).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm2.slice(144,168).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm2.slice(168,192).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm2.slice(192,216).map(Number)),
+                jStat.tci( 0.5, 0.05,arrm2.slice(216,240).map(Number)),
+
+
               ]
             }]
         }

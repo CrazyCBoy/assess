@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface FSSService {
 
-    String getinfo(HourlyEntity hourlyEntity);
+    String  getinfo(HourlyEntity hourlyEntity);
 
 }

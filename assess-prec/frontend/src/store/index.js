@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import app from './modules/app'
+//import app from './modules/app'
 import user from './modules/user'
 import {SpatiaData} from '../api/Spatia'
 import getters from './getters'
@@ -35,24 +35,9 @@ mutations:{
     }
 },
   actions: {
-    /*
-        async defaultmeanData(context,listData){
-          let response = await Axios.get("/home", listData);
-          if (response.data.success == true) {
-            context.commit("setDefaultData", response.data);
-          }
-          /!*return new Promise((resolve, reject) => {
-            SpatiaData(listData.chooseDay,listData.chooseScale,listData.chooseHours).then(response => {
-
-            }).catch(error => {
-              reject(error)
-            })
-          })*!/
-        }*/
     defaultmeanData({commit}, loginForm) {
       return new Promise((resolve, reject) => {
         SpatiaData().then(response => {
-
           resolve()
         }).catch(error => {
           console.log(error)

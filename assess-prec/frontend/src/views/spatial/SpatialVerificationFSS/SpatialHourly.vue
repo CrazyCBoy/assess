@@ -386,11 +386,11 @@
       }),*/
       confirm(){
         this.$axios.get(
-          '/home',{
+          'api/home',{
             params:{
-              chooseDate:"",
-              chooseScale:"",
-              chooseHours:""
+              chooseDate:"A",
+              chooseScale:"B",
+              chooseHours:"C"
             }
           }
         ).then(successResponse => {
@@ -400,8 +400,23 @@
               this.$route.replace({path:'/home'})
             }
           }).catch(failResponse => {
+
         })
-    },
+
+          /*//GET
+          this.$axios({
+            method: 'get',
+            // url:'../static/test/getInfo.json', //<---本地地址
+            url: '/api/home',
+          }).then(response=>{
+            let _data=response.data;
+            alert("hello," + _data.username);
+          }).catch(function(err){
+            console.log(err)
+          })*/
+
+
+      },
 
        /* this.$refs[listData].validate(valid => {
             this.$store
