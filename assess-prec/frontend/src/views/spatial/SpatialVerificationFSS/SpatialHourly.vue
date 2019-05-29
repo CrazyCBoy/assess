@@ -37,7 +37,8 @@
             </el-select>
 
 
-
+         <el-button @click="test('listData')" >test</el-button>
+            <el-button @click="home('listData')" >home</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -58,11 +59,9 @@
             </div>
           </el-col>
         </el-row>
-        <div >
-
+        <div>
         </div>
       </div>
-
     </el-card>
 
     <div class="pagination-container">
@@ -77,7 +76,6 @@
         :total="total">
       </el-pagination>
     </div>
-
   </div>
 </template>
 <script>
@@ -163,10 +161,14 @@
               color: 'rgba(255, 255, 255, 0)',
               pointWidth:40,
               data: [
-                jStat.tci( 1, 0.05, 1,5),
+                //要以x轴为中心，求出jstat.tci生成两个数的和的平均数，上下坐标改为正负平均数即可，
+               jStat.tci( 1, 0.05, 1,5),
                 jStat.tci( 1, 0.05, -8.6,8.5),
                 [-10.2, 11.8],
-                [-1.7, 12.2],
+                [-7,7],
+                [-1.7, 12.3],
+
+                [-5.3,5.3],
                 [-0.6, 23.1],
                 [3.7, 25.4],
                 [6.0, 26.2],
@@ -350,7 +352,6 @@
       }
     },
     created() {
-
       Object.assign(this.listData, this.OptionValue);
     },
     computed: {
@@ -359,7 +360,7 @@
       })
     },
     methods: {
-      test(listData){
+   /*   test(listData){
           this.$refs[listData].validate(valid => {
 
           if (valid) {
@@ -367,15 +368,34 @@
 
             this.$store.dispatch("defaultmeanData", this.listData)
               .then(() => {
-                // this.loading = false;
                 this.$router.push({path: "/"});
               })
               .catch(() => {
                 this.loading = false;
               });
-            // console.log("success")
+            console.log("success")
           } else {
-            // console.log("error submit!!");
+             console.log("error submit!!");
+            return false;
+          }
+        });
+      },*/
+      home(listData){
+        this.$refs[listData].validate(valid => {
+
+          if (valid) {
+            console.log("123")
+
+            this.$store.dispatch("mainhome", this.listData)
+              .then(() => {
+                this.$router.push({path: "/"});
+              })
+              .catch(() => {
+                this.loading = false;
+              });
+            console.log("success")
+          } else {
+            console.log("error submit!!");
             return false;
           }
         });
@@ -386,7 +406,7 @@
       }),*/
       confirm(){
         this.$axios.get(
-          'api/home',{
+          'http://127.0.0.1:8081/home',{
             params:{
               chooseDate:"A",
               chooseScale:"B",

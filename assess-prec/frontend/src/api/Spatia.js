@@ -11,6 +11,20 @@ export function SpatiaData(day,scale,hours) {
     }
   })
 }
+export function MainHome(day,scale,hours) {
+  return request({
+    url:'/home',
+    method:'get',
+    //params:params  //和Data得区别
+    data:{
+      day,
+      scale,
+      hours
+    }
+  })
+}
+
+
 /*export const getAdminInfo = () => fetch('/admin/info');*/
 
 

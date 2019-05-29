@@ -78,9 +78,30 @@
   var   arrm1=arrdata.subarr(mm1,stam)//240个点，差值
   var  arrm2=arrdata.subarr(mm2,stam)//240个点，差值
   var   averagesarr=arrdata.avgarr(arrm1)//10个点，
-  console.log(arrm1)
-  console.log(arrm1.slice(0,24).map(Number))
   var  averagesarr2=arrdata.avgarr(arrm2)//10个点
+
+//方法1
+  var arrj=jStat.tci( 0.1, 0.05,arrm1.slice(0,24).map(Number));
+  arrj[0]=Math.abs(jStat.tci( 0.1, 0.05,arrm1.slice(0,24).map(Number))[0]).toFixed(3),
+    arrj[1]=Math.abs(jStat.tci( 0.1, 0.05,arrm1.slice(0,24).map(Number))[1]).toFixed(3);
+  const arrayAverage = arr => arr.reduce((acc, val) => acc + val, 0) / arr.length;
+  console.log(arrayAverage(arrj.map(Number)))
+
+  //方法2
+  function avgarr(arr) {
+    var abs=0;
+    arr=arr.map(Number)
+    for(var i=0;i<arr.length;i++){
+      if(arr[i]<0){
+        arr[i]=Math.abs(arr[i]);
+      }
+      abs+=arr[i];
+    }
+    return abs/arr.length;
+  }
+  console.log(avgarr(arrj))
+
+
 
   export default {
     components: {
@@ -172,14 +193,16 @@
 
             type: 'spline',
 
-            data: averagesarr,
+            //data: averagesarr,
+            data: [0,-0.15,-0.5,-0.25,-0.165,-0.22,-0.5,-0.31,-0.29,-0.19,-0.22,-0.24],
             tooltip: {
               valueSuffix: '°C'
             }
           },{
             //name: '温度',
             type: 'spline',
-            data: averagesarr2,
+            //data: averagesarr2,
+            data: [0,0.15,0.5,0.25,0.165,0.22,0.5,0.31,0.29,0.19,0.22,0.24],
             tooltip: {
               valueSuffix: '°C'
             }
@@ -192,15 +215,15 @@
               pointWidth:40,
               data: [
                 jStat.tci( 0.1, 0.05,arrm1.slice(0,24).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm1.slice(24,48).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm1.slice(48,72).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm1.slice(72,96).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm1.slice(96,120).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm1.slice(120,144).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm1.slice(144,168).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm1.slice(168,192).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm1.slice(192,216).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm1.slice(216,240).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm1.slice(24,48).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm1.slice(48,72).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm1.slice(72,96).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm1.slice(96,120).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm1.slice(120,144).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm1.slice(144,168).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm1.slice(168,192).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm1.slice(192,216).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm1.slice(216,240).map(Number)),
               ]
             },
             {
@@ -211,16 +234,16 @@
               color: 'rgba(255, 255, 255, 0)',
 
               data: [
-                jStat.tci( 0.5, 0.05,arrm2.slice(0,24).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm2.slice(24,48).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm2.slice(48,72).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm2.slice(72,96).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm2.slice(96,120).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm2.slice(120,144).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm2.slice(144,168).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm2.slice(168,192).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm2.slice(192,216).map(Number)),
-                jStat.tci( 0.5, 0.05,arrm2.slice(216,240).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm2.slice(0,24).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm2.slice(24,48).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm2.slice(48,72).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm2.slice(72,96).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm2.slice(96,120).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm2.slice(120,144).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm2.slice(144,168).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm2.slice(168,192).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm2.slice(192,216).map(Number)),
+                jStat.tci( 0.1, 0.05,arrm2.slice(216,240).map(Number)),
 
 
               ]
